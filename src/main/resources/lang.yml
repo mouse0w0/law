@@ -1,0 +1,13 @@
+prefix: §7§l[§6§lLaw§7§l] §r
+update-check-message: |-
+  §f插件 §6Law§f 发现新版本: §a{0}§f, 当前版本: §c{1}
+  §f插件发布地址: §b{2}
+  §f插件仓库地址: §b{3}
+command-help-message: |-
+  §f/law reload §6- 重载插件的配置文件。
+  §f/law world §6- 查看当前所在世界名。
+command-reload-message: §a配置文件重载完成。
+command-world-message: §f当前所在世界为： {0}。
+command-usage-message: §f未知的指令。输入"/law help"查看帮助。
+command-no-perm: §c没有足够的权限。
+command-no-player: §c仅玩家可执行该指令。

@@ -1,0 +1,113 @@
+# 阻止实体生成（1.7及以上版本）
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+prevent-entity-spawn: []
+
+# 阻止实体通过传送门
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+prevent-entity-teleport-by-portal: []
+
+# 阻止实体爆炸
+# 苦力怕（CREEPER）、TNT（PRIMED_TNT）、末影水晶（ENDER_CRYSTAL）
+# 凋零头颅（WITHER_SKULL）、恶魂火球（FIREBALL）、TNT矿车（MINECART_TNT）
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+prevent-entity-explosion: []
+
+# 阻止实体破坏方块
+# 苦力怕（CREEPER）、TNT（PRIMED_TNT）、末影水晶（ENDER_CRYSTAL）、凋零头颅（WITHER_SKULL）
+# 恶魂火球（FIREBALL）、TNT矿车（MINECART_TNT）、末影人（ENDERMAN）、僵尸（ZOMBIE）
+# 凋零（WITHER）、羊（SHEEP）、劫掠兽（RAVAGER）
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+prevent-entity-break-block: [CREEPER, PRIMED_TNT, ENDER_CRYSTAL, WITHER, WITHER_SKULL, FIREBALL, MINECART_TNT, ENDERMAN]
+
+# 阻止实体乘坐载具
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+prevent-entity-enter-vehicle: []
+
+# 阻止实体捡起物品
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+prevent-entity-pickup-item: []
+
+# 阻止玩家受到伤害
+# 可用伤害类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html
+prevent-player-damage: []
+
+# 阻止物品受到爆炸伤害
+prevent-item-damage-by-explosion: false
+
+# 阻止物品受到火焰和岩浆伤害
+prevent-item-damage-by-fire: false
+
+# 阻止村民转变为女巫（1.13及以上版本）
+prevent-villager-to-witch: false
+
+# 阻止村民转变为僵尸村民（1.13及以上版本）
+prevent-villager-infection: false
+
+# 阻止僵尸村民转变为村民（1.13及以上版本）
+prevent-villager-cure: false
+
+# 阻止僵尸转变为溺尸
+prevent-zombie-drowning: false
+
+# 阻止苦力怕充能
+prevent-creeper-charge: false
+
+# 阻止猪转变为僵尸猪人
+prevent-pig-to-zombie-pigman: false
+
+# 阻止蘑菇牛切换颜色
+prevent-mooshroom-switch: false
+
+# 阻止火焰蔓延
+prevent-fire-spread: false
+
+# 阻止火焰摧毁方块
+prevent-fire-burn: false
+
+# 阻止耕地退化
+prevent-farmland-decay: false
+
+# 阻止床爆炸
+prevent-bed-explosion: false
+
+# 阻止重生锚爆炸
+prevent-respawn-anchor-explosion: false
+
+# 死亡时保留物品
+keep-inventory-on-death: false
+
+# 死亡时保留经验
+keep-exp-on-death: false
+
+# 禁用下雨（包括雷暴）
+disable-weather-raining: false
+
+# 禁用雷暴
+disable-weather-thunder: false
+
+# 禁用下雨和雷暴打雷
+disable-weather-lightning: false
+
+# 阻止放置方块
+# 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+prevent-place-block: []
+
+# 阻止左键交互方块
+# 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+prevent-left-click-block: []
+
+# 阻止右键交互方块
+# 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+prevent-right-click-block: []
+
+# 阻止左键交互实体
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+prevent-left-click-entity: []
+
+# 阻止右键交互实体
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+prevent-right-click-entity: []
+
+# 阻止点燃方块
+# 可用点燃类型：https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/block/BlockIgniteEvent.IgniteCause.html
+prevent-ignite-block: []

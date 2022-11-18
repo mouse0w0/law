@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'com.github.mouse0w0'
+version '1.0.0'
+
+repositories {
+    maven { url 'https://hub.spigotmc.org/nexus/content/groups/public/' }
+    mavenCentral()
+}
+
+dependencies {
+//    implementation 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
+    implementation 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
