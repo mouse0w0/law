@@ -12,7 +12,7 @@ import org.bukkit.event.block.BlockExplodeEvent;
 import java.util.Set;
 
 public class BedExplodeListener implements Listener {
-    private static final Set<Material> BED = EnumUtils.allMatch(Material.class,
+    private static final Set<Material> BED = EnumUtils.allOf(Material.class,
             "BED", "BED_BLOCK", "WHITE_BED", "ORANGE_BED", "MAGENTA_BED",
             "LIGHT_BLUE_BED", "YELLOW_BED", "LIME_BED", "PINK_BED", "GRAY_BED",
             "LIGHT_GRAY_BED", "CYAN_BED", "PURPLE_BED", "BLUE_BED", "BROWN_BED",

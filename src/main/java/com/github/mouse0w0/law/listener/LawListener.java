@@ -20,8 +20,11 @@ import org.bukkit.event.vehicle.VehicleEnterEvent;
 import org.bukkit.event.weather.ThunderChangeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 
+import java.util.Set;
+
 public class LawListener implements Listener {
-    private static final Material FARMLAND = EnumUtils.oneMatch(Material.class, "FARMLAND", "SOIL");
+    private static final Material FARMLAND = EnumUtils.oneOf(Material.class,
+            "FARMLAND", "SOIL");
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityPortal(EntityPortalEvent e) {
@@ -128,6 +131,61 @@ public class LawListener implements Listener {
         Block block = e.getBlock();
         if (Law.get(block.getLocation()).preventFireBurn) {
             e.setCancelled(true);
+        }
+    }
+
+    private static final Set<Material> CORAL = EnumUtils.allOf(Material.class,
+            "TUBE_CORAL_BLOCK", "BRAIN_CORAL_BLOCK", "BUBBLE_CORAL_BLOCK", "FIRE_CORAL_BLOCK", "HORN_CORAL_BLOCK",
+            "TUBE_CORAL", "BRAIN_CORAL", "BUBBLE_CORAL", "FIRE_CORAL", "HORN_CORAL",
+            "TUBE_CORAL_FAN", "BRAIN_CORAL_FAN", "BUBBLE_CORAL_FAN", "FIRE_CORAL_FAN", "HORN_CORAL_FAN",
+            "TUBE_CORAL_WALL_FAN", "BRAIN_CORAL_WALL_FAN", "BUBBLE_CORAL_WALL_FAN", "FIRE_CORAL_WALL_FAN", "HORN_CORAL_WALL_FAN");
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onBlockFade(BlockFadeEvent e) {
+        Block block = e.getBlock();
+        Material type = block.getType();
+        if (type == Material.FIRE) {
+            if (Law.get(block.getLocation()).preventFireFade) {
+                e.setCancelled(true);
+            }
+        } else if (type == Material.SNOW) {
+            if (Law.get(block.getLocation()).preventSnowMelt) {
+                e.setCancelled(true);
+            }
+        } else if (type == Material.ICE) {
+            if (Law.get(block.getLocation()).preventIceMelt) {
+                e.setCancelled(true);
+            }
+        } else if (CORAL.contains(type)) {
+            if (Law.get(block.getLocation()).preventCoralDeath) {
+                e.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onBlockForm(BlockFormEvent e) {
+        if (e instanceof EntityBlockFormEvent) {
+            Entity entity = ((EntityBlockFormEvent) e).getEntity();
+            if (entity.getType() == EntityType.SNOWMAN) {
+                if (Law.get(entity.getLocation()).preventSnowmanGenerateSnow) {
+                    e.setCancelled(true);
+                }
+            }
+        } else {
+            Block block = e.getBlock();
+            switch (block.getType()) {
+                case SNOW:
+                    if (Law.get(block.getLocation()).preventSnowForm) {
+                        e.setCancelled(true);
+                    }
+                    break;
+                case ICE:
+                    if (Law.get(block.getLocation()).preventIceForm) {
+                        e.setCancelled(true);
+                    }
+                    break;
+            }
         }
     }
 

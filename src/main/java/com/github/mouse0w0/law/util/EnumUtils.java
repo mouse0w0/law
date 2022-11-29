@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class EnumUtils {
-    public static <E extends Enum<E>> E oneMatch(Class<E> enumType, String... names) {
+    public static <E extends Enum<E>> E oneOf(Class<E> enumType, String... names) {
         for (String name : names) {
             try {
                 return Enum.valueOf(enumType, name);
@@ -14,7 +14,7 @@ public class EnumUtils {
         return null;
     }
 
-    public static <E extends Enum<E>> Set<E> allMatch(Class<E> enumType, String... names) {
+    public static <E extends Enum<E>> Set<E> allOf(Class<E> enumType, String... names) {
         Set<E> result = new HashSet<>();
         for (String name : names) {
             try {

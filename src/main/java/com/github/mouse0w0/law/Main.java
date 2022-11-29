@@ -46,6 +46,11 @@ public class Main extends JavaPlugin {
         } else {
             pm.registerEvents(new TransformListenerLegacy(), this);
         }
+        if (hasClass("org.bukkit.block.data.Waterlogged")) {
+            pm.registerEvents(new LiquidFlowListener(), this);
+        } else {
+            pm.registerEvents(new LiquidFlowListenerLegacy(), this);
+        }
         if (hasClass("org.bukkit.event.weather.LightningStrikeEvent$Cause")) {
             pm.registerEvents(new LightningStrikeListener(), this);
         } else {

@@ -64,6 +64,27 @@ prevent-fire-spread: false
 # 阻止火焰摧毁方块
 prevent-fire-burn: false
 
+# 阻止火焰熄灭
+prevent-fire-fade: false
+
+# 阻止雪形成
+prevent-snow-form: false
+
+# 阻止雪傀儡产雪
+prevent-snowman-generate-snow: false
+
+# 阻止雪融化
+prevent-snow-melt: false
+
+# 阻止冰形成
+prevent-ice-form: false
+
+# 阻止冰融化
+prevent-ice-melt: false
+
+# 阻止珊瑚失水
+prevent-coral-death: false
+
 # 阻止耕地退化
 prevent-farmland-decay: false
 
@@ -72,6 +93,12 @@ prevent-bed-explosion: false
 
 # 阻止重生锚爆炸
 prevent-respawn-anchor-explosion: false
+
+# 阻止水流动
+prevent-water-flow: false
+
+# 阻止岩浆流动
+prevent-lava-flow: false
 
 # 死亡时保留物品
 keep-inventory-on-death: false
