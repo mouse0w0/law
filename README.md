@@ -4,9 +4,14 @@
 - 阻止玩家受到伤害、放置方块、点击方块和实体。
 - 阻止物品受到爆炸、火焰和岩浆伤害。
 - 阻止生物转变（村民、女巫、僵尸村民、溺尸、苦力怕、僵尸猪人、蘑菇牛）。
-- 阻止火焰蔓延和烧毁方块。
+- 阻止火焰蔓延、烧毁方块、熄灭。
+- 阻止雪形成、融化。
+- 阻止雪傀儡产雪。
+- 阻止冰形成、融化。
+- 阻止珊瑚失水。
 - 阻止耕地退化。
 - 阻止床和重生锚爆炸。
+- 阻止水和岩浆流动。
 - 死亡时保留经验和物品。
 - 控制天气。
 - 阻止方块被点燃。
@@ -86,6 +91,27 @@ prevent-fire-spread: false
 # 阻止火焰摧毁方块
 prevent-fire-burn: false
 
+# 阻止火焰熄灭
+prevent-fire-fade: false
+
+# 阻止雪形成
+prevent-snow-form: false
+
+# 阻止雪傀儡产雪
+prevent-snowman-generate-snow: false
+
+# 阻止雪融化
+prevent-snow-melt: false
+
+# 阻止冰形成
+prevent-ice-form: false
+
+# 阻止冰融化
+prevent-ice-melt: false
+
+# 阻止珊瑚失水
+prevent-coral-death: false
+
 # 阻止耕地退化
 prevent-farmland-decay: false
 
@@ -94,6 +120,12 @@ prevent-bed-explosion: false
 
 # 阻止重生锚爆炸
 prevent-respawn-anchor-explosion: false
+
+# 阻止水流动
+prevent-water-flow: false
+
+# 阻止岩浆流动
+prevent-lava-flow: false
 
 # 死亡时保留物品
 keep-inventory-on-death: false
@@ -154,8 +186,8 @@ prevent-ignite-block: []
 
 # 下载插件
 - [百度云盘下载](https://pan.baidu.com/s/1V3YTptQWiRpBMlSglfwy-A?pwd=ffjc)
-- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F1.0.0%2FLaw-1.0.0.jar)
-- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/1.0.0/Law-1.0.0.jar)
+- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F1.0.0%2FLaw-1.1.0.jar)
+- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/1.1.0/Law-1.1.0.jar)
 
 # 开源信息
 本插件所有源代码托管于Github，使用**BSD-3-Clause license**开源协议。
