@@ -212,9 +212,11 @@ public class LawListener implements Listener {
         Player entity = e.getEntity();
         Law law = Law.get(entity.getLocation());
         if (law.keepInventoryOnDeath) {
+            e.getDrops().clear();
             e.setKeepInventory(true);
         }
         if (law.keepExpOnDeath) {
+            e.setDroppedExp(0);
             e.setKeepLevel(true);
         }
     }
