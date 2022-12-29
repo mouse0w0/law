@@ -75,8 +75,9 @@ public class UpdateChecker implements Listener {
     private Version getLatestVersion() {
         try {
             String s = get(releaseUrl);
-            int start = s.indexOf("\"tag_name\"") + 12;
+            int start = s.indexOf("\"tag_name\"");
             if (start == -1) return new Version("0");
+            start = start + 12;
             int end = s.indexOf("\"", start);
             if (end == -1) return new Version("0");
             return new Version(s.substring(start, end));
