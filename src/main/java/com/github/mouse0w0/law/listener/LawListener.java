@@ -56,7 +56,7 @@ public class LawListener implements Listener {
                 e.setCancelled(true);
             }
         } else {
-            if (law.preventEntityExplosion.contains(type)) {
+            if (law.preventEntityBreakBlock.contains(type) || law.preventEntityExplosion.contains(type)) {
                 e.setCancelled(true);
             }
         }
