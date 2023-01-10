@@ -85,6 +85,9 @@ prevent-ice-melt: false
 # 阻止珊瑚失水
 prevent-coral-death: false
 
+# 阻止踩碎海龟蛋
+prevent-turtle-egg-trampling: false
+
 # 阻止耕地退化
 prevent-farmland-decay: false
 

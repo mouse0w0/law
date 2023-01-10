@@ -54,6 +54,9 @@ public class Main extends JavaPlugin {
         } else {
             pm.registerEvents(new LightningStrikeListenerLegacy(), this);
         }
+        if (hasEnum(Material.class, "TURTLE_EGG")) {
+            pm.registerEvents(new TurtleEggListener(), this);
+        }
         if (hasEnum(Material.class, "RESPAWN_ANCHOR")) {
             pm.registerEvents(new RespawnAnchorExplodeListener(), this);
         }

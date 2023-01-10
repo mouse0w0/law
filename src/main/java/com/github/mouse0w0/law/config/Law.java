@@ -40,6 +40,7 @@ public class Law {
     public boolean preventIceForm;
     public boolean preventIceMelt;
     public boolean preventCoralDeath;
+    public boolean preventTurtleEggTrampling;
     public boolean preventFarmlandDecay;
     public boolean preventLeavesDecay;
     public boolean preventDragonEggTeleport;
@@ -118,6 +119,7 @@ public class Law {
         law.preventIceForm = config.getBoolean("prevent-ice-form");
         law.preventIceMelt = config.getBoolean("prevent-ice-melt");
         law.preventCoralDeath = config.getBoolean("prevent-coral-death");
+        law.preventTurtleEggTrampling = config.getBoolean("prevent-turtle-egg-trampling");
         law.preventFarmlandDecay = config.getBoolean("prevent-farmland-decay");
         law.preventLeavesDecay = config.getBoolean("prevent-leaves-decay");
         law.preventDragonEggTeleport = config.getBoolean("prevent-dragon-egg-teleport");
