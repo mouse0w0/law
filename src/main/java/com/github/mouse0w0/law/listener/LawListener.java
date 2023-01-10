@@ -22,9 +22,6 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import java.util.Set;
 
 public class LawListener implements Listener {
-    private static final Material FARMLAND = EnumUtils.oneOf(Material.class,
-            "FARMLAND", "SOIL");
-
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityPortal(EntityPortalEvent e) {
         Entity entity = e.getEntity();
@@ -186,6 +183,11 @@ public class LawListener implements Listener {
         }
     }
 
+    private static final Material FARMLAND = EnumUtils.oneOf(Material.class,
+            "FARMLAND", "SOIL");
+    private static final Material DRAGON_EGG = EnumUtils.oneOf(Material.class,
+            "DRAGON_EGG");
+
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityInteract(EntityInteractEvent e) {
         Block block = e.getBlock();
@@ -196,10 +198,20 @@ public class LawListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent e) {
-        if (e.getAction() == Action.PHYSICAL) {
-            Block block = e.getClickedBlock();
-            if (block.getType() == FARMLAND && Law.get(block.getLocation()).preventFarmlandDecay) {
-                e.setCancelled(true);
+        switch (e.getAction()) {
+            case PHYSICAL: {
+                Block block = e.getClickedBlock();
+                if (block.getType() == FARMLAND && Law.get(block.getLocation()).preventFarmlandDecay) {
+                    e.setCancelled(true);
+                }
+                break;
+            }
+            case RIGHT_CLICK_BLOCK: {
+                Block block = e.getClickedBlock();
+                if (block.getType() == DRAGON_EGG && Law.get(block.getLocation()).preventDragonEggTeleport) {
+                    e.setCancelled(true);
+                }
+                break;
             }
         }
     }

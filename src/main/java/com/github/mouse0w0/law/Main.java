@@ -32,11 +32,9 @@ public class Main extends JavaPlugin {
         LawCommand.init();
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new LawListener(), this);
+        pm.registerEvents(new BedExplodeListener(), this);
         if (hasClass("org.bukkit.event.entity.EntitySpawnEvent")) {
             pm.registerEvents(new SpawnListener(), this);
-        }
-        if (hasClass("org.bukkit.event.block.BlockExplodeEvent")) {
-            pm.registerEvents(new BedExplodeListener(), this);
         }
         if (hasClass("org.bukkit.event.entity.EntityPickupItemEvent")) {
             pm.registerEvents(new PickupItemListener(), this);

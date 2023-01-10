@@ -91,6 +91,9 @@ prevent-farmland-decay: false
 # 阻止树叶腐烂
 prevent-leaves-decay: false
 
+# 阻止龙蛋传送
+prevent-dragon-egg-teleport: false
+
 # 阻止床爆炸
 prevent-bed-explosion: false
 
