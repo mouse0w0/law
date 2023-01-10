@@ -190,7 +190,7 @@ public class LawListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onFarmlandDecay(EntityInteractEvent e) {
+    public void onEntityInteract(EntityInteractEvent e) {
         Block block = e.getBlock();
         if (block.getType() == FARMLAND && Law.get(block.getLocation()).preventFarmlandDecay) {
             e.setCancelled(true);
@@ -198,12 +198,19 @@ public class LawListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onPlayerFarmlandDecay(PlayerInteractEvent e) {
+    public void onPlayerInteract(PlayerInteractEvent e) {
         if (e.getAction() == Action.PHYSICAL) {
             Block block = e.getClickedBlock();
             if (block.getType() == FARMLAND && Law.get(block.getLocation()).preventFarmlandDecay) {
                 e.setCancelled(true);
             }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onLeavesDecay(LeavesDecayEvent e) {
+        if (Law.get(e.getBlock().getLocation()).preventLeavesDecay) {
+            e.setCancelled(true);
         }
     }
 

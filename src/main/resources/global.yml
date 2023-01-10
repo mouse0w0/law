@@ -88,6 +88,9 @@ prevent-coral-death: false
 # 阻止耕地退化
 prevent-farmland-decay: false
 
+# 阻止树叶腐烂
+prevent-leaves-decay: false
+
 # 阻止床爆炸
 prevent-bed-explosion: false
 

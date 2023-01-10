@@ -41,6 +41,7 @@ public class Law {
     public boolean preventIceMelt;
     public boolean preventCoralDeath;
     public boolean preventFarmlandDecay;
+    public boolean preventLeavesDecay;
     public boolean preventBedExplosion;
     public boolean preventRespawnAnchorExplosion;
     public boolean preventWaterFlow;
@@ -117,6 +118,7 @@ public class Law {
         law.preventIceMelt = config.getBoolean("prevent-ice-melt");
         law.preventCoralDeath = config.getBoolean("prevent-coral-death");
         law.preventFarmlandDecay = config.getBoolean("prevent-farmland-decay");
+        law.preventLeavesDecay = config.getBoolean("prevent-leaves-decay");
         law.preventBedExplosion = config.getBoolean("prevent-bed-explosion");
         law.preventRespawnAnchorExplosion = config.getBoolean("prevent-respawn-anchor-explosion");
         law.preventWaterFlow = config.getBoolean("prevent-water-flow");
