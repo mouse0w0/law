@@ -39,7 +39,7 @@ prevent-entity-teleport-by-portal: []
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 prevent-entity-explosion: [ ]
 
-# 阻止实体破坏方块、画和展示框
+# 阻止实体破坏方块、画以及展示框
 # 苦力怕（CREEPER）、TNT（PRIMED_TNT）、末影水晶（ENDER_CRYSTAL）、凋零头颅（WITHER_SKULL）
 # 恶魂火球（FIREBALL）、TNT矿车（MINECART_TNT）、末影人（ENDERMAN）、僵尸（ZOMBIE）
 # 凋零（WITHER）、羊（SHEEP）、劫掠兽（RAVAGER）
@@ -112,8 +112,17 @@ prevent-ice-melt: false
 # 阻止珊瑚失水
 prevent-coral-death: false
 
+# 阻止踩碎海龟蛋
+prevent-turtle-egg-trampling: false
+
 # 阻止耕地退化
 prevent-farmland-decay: false
+
+# 阻止树叶腐烂
+prevent-leaves-decay: false
+
+# 阻止龙蛋传送
+prevent-dragon-egg-teleport: false
 
 # 阻止床爆炸
 prevent-bed-explosion: false
@@ -185,9 +194,10 @@ prevent-ignite-block: []
 - `law.bypass.right-click-entity` - 绕过右键点击实体检查。
 
 # 下载插件
+
 - [百度网盘下载](https://pan.baidu.com/s/1V3YTptQWiRpBMlSglfwy-A?pwd=ffjc)
-- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F1.1.5%2FLaw-1.1.5.jar)
-- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/1.1.5/Law-1.1.5.jar)
+- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F1.2.0%2FLaw-1.2.0.jar)
+- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/1.2.0/Law-1.2.0.jar)
 
 # 开源信息
 本插件所有源代码托管于Github，使用**BSD-3-Clause license**开源协议。
