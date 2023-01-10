@@ -7,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -111,8 +110,7 @@ public class LawListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onCreeperPower(CreeperPowerEvent e) {
         if (e.getCause() == CreeperPowerEvent.PowerCause.LIGHTNING) {
-            Entity entity = e.getEntity();
-            if (Law.get(entity.getLocation()).preventCreeperCharge) {
+            if (Law.get(e.getEntity().getLocation()).preventCreeperCharge) {
                 e.setCancelled(true);
             }
         }
@@ -128,8 +126,7 @@ public class LawListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockBurn(BlockBurnEvent e) {
-        Block block = e.getBlock();
-        if (Law.get(block.getLocation()).preventFireBurn) {
+        if (Law.get(e.getBlock().getLocation()).preventFireBurn) {
             e.setCancelled(true);
         }
     }
@@ -216,8 +213,7 @@ public class LawListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerDeath(PlayerDeathEvent e) {
-        Player entity = e.getEntity();
-        Law law = Law.get(entity.getLocation());
+        Law law = Law.get(e.getEntity().getLocation());
         if (law.keepInventoryOnDeath) {
             e.getDrops().clear();
             e.setKeepInventory(true);
@@ -286,8 +282,7 @@ public class LawListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockIgnite(BlockIgniteEvent e) {
-        Block block = e.getBlock();
-        if (Law.get(block.getLocation()).preventIgniteBlock.contains(e.getCause())) {
+        if (Law.get(e.getBlock().getLocation()).preventIgniteBlock.contains(e.getCause())) {
             e.setCancelled(true);
         }
     }
