@@ -19,14 +19,14 @@ public class LawCommand implements CommandExecutor {
         switch (args.length != 0 ? args[0] : "help") {
             case "help":
                 if (!sender.hasPermission("law.admin.help")) {
-                    sender.sendMessage(Lang.getWithPrefix("command-no-perm"));
+                    sender.sendMessage(Lang.getWithPrefix("command-no-permission"));
                 } else {
                     sender.sendMessage(Lang.get("command-help-message"));
                 }
                 break;
             case "reload":
                 if (!sender.hasPermission("law.admin.reload")) {
-                    sender.sendMessage(Lang.getWithPrefix("command-no-perm"));
+                    sender.sendMessage(Lang.getWithPrefix("command-no-permission"));
                 } else {
                     Config.load();
                     Lang.load();
@@ -38,7 +38,7 @@ public class LawCommand implements CommandExecutor {
                 if (!(sender instanceof Player)) {
                     sender.sendMessage(Lang.getWithPrefix("command-no-player"));
                 } else if (!sender.hasPermission("law.admin.world")) {
-                    sender.sendMessage(Lang.getWithPrefix("command-no-perm"));
+                    sender.sendMessage(Lang.getWithPrefix("command-no-permission"));
                 } else {
                     sender.sendMessage(Lang.getWithPrefix("command-world-message", ((Player) sender).getWorld().getName()));
                 }

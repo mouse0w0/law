@@ -9,5 +9,5 @@ command-help-message: |-
 command-reload-message: §a配置文件重载完成。
 command-world-message: §f当前所在世界为： {0}。
 command-usage-message: §f未知的指令。输入"/law help"查看帮助。
-command-no-perm: §c没有足够的权限。
+command-no-permission: §c没有足够的权限。
 command-no-player: §c仅玩家可执行该指令。
