@@ -22,11 +22,11 @@ public class LiquidFlowListenerLegacy implements Listener {
         Block block = e.getBlock();
         Material type = block.getType();
         if (WATER.contains(type)) {
-            if (Law.get(block.getLocation()).preventWaterFlow) {
+            if (Law.get(block.getWorld()).preventWaterFlow) {
                 e.setCancelled(true);
             }
         } else if (LAVA.contains(type)) {
-            if (Law.get(block.getLocation()).preventLavaFlow) {
+            if (Law.get(block.getWorld()).preventLavaFlow) {
                 e.setCancelled(true);
             }
         }

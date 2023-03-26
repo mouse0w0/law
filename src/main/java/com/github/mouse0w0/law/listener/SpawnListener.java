@@ -11,7 +11,7 @@ public class SpawnListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntitySpawn(EntitySpawnEvent e) {
         Entity entity = e.getEntity();
-        if (Law.get(entity.getLocation()).preventEntitySpawn.contains(entity.getType())) {
+        if (Law.get(entity.getWorld()).preventEntitySpawn.contains(entity.getType())) {
             e.setCancelled(true);
         }
     }

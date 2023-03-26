@@ -21,11 +21,11 @@ public class LiquidFlowListener implements Listener {
         Block block = e.getBlock();
         Material type = block.getType();
         if (WATER.contains(type) || block.getBlockData() instanceof Waterlogged) {
-            if (Law.get(block.getLocation()).preventWaterFlow) {
+            if (Law.get(block.getWorld()).preventWaterFlow) {
                 e.setCancelled(true);
             }
         } else if (type == Material.LAVA) {
-            if (Law.get(block.getLocation()).preventLavaFlow) {
+            if (Law.get(block.getWorld()).preventLavaFlow) {
                 e.setCancelled(true);
             }
         }

@@ -11,7 +11,7 @@ public class PickupItemListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityPickupItem(EntityPickupItemEvent e) {
         Entity entity = e.getEntity();
-        if (Law.get(entity.getLocation()).preventEntityPickupItem.contains(e.getEntityType())) {
+        if (Law.get(entity.getWorld()).preventEntityPickupItem.contains(e.getEntityType())) {
             e.setCancelled(true);
         }
     }

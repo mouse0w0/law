@@ -14,32 +14,32 @@ public class TransformListener implements Listener {
         Entity entity = e.getEntity();
         switch (e.getTransformReason()) {
             case CURED:
-                if (Law.get(entity.getLocation()).preventVillagerCure) {
+                if (Law.get(entity.getWorld()).preventVillagerCure) {
                     e.setCancelled(true);
                 }
                 break;
             case INFECTION:
-                if (Law.get(entity.getLocation()).preventVillagerInfection) {
+                if (Law.get(entity.getWorld()).preventVillagerInfection) {
                     e.setCancelled(true);
                 }
                 break;
             case DROWNED:
-                if (Law.get(entity.getLocation()).preventZombieDrowning) {
+                if (Law.get(entity.getWorld()).preventZombieDrowning) {
                     e.setCancelled(true);
                 }
                 break;
             case LIGHTNING:
                 EntityType type = entity.getType();
                 if (type == EntityType.VILLAGER) {
-                    if (Law.get(entity.getLocation()).preventVillagerToWitch) {
+                    if (Law.get(entity.getWorld()).preventVillagerToWitch) {
                         e.setCancelled(true);
                     }
                 } else if (type == EntityType.PIG) {
-                    if (Law.get(entity.getLocation()).preventPigToZombiePigman) {
+                    if (Law.get(entity.getWorld()).preventPigToZombiePigman) {
                         e.setCancelled(true);
                     }
                 } else if (type == EntityType.MUSHROOM_COW) {
-                    if (Law.get(entity.getLocation()).preventMooshroomSwitch) {
+                    if (Law.get(entity.getWorld()).preventMooshroomSwitch) {
                         e.setCancelled(true);
                     }
                 }

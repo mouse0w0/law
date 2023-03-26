@@ -30,7 +30,7 @@ public class BedExplodeListener implements Listener {
             return;
         }
         if (BED.contains(block.getType())) {
-            if (Law.get(block.getLocation()).preventBedExplosion) {
+            if (Law.get(block.getWorld()).preventBedExplosion) {
                 e.setCancelled(true);
             }
         }

@@ -23,7 +23,7 @@ public class RespawnAnchorExplodeListener implements Listener {
             return;
         }
         if (block.getType() == Material.RESPAWN_ANCHOR) {
-            if (Law.get(block.getLocation()).preventRespawnAnchorExplosion) {
+            if (Law.get(block.getWorld()).preventRespawnAnchorExplosion) {
                 RespawnAnchor respawnAnchor = (RespawnAnchor) block.getBlockData();
                 int charges = respawnAnchor.getCharges();
                 if (charges == 0) {

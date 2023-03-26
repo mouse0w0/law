@@ -1,7 +1,6 @@
 package com.github.mouse0w0.law.config;
 
 import com.github.mouse0w0.law.Main;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
@@ -62,10 +61,6 @@ public class Law {
 
     private static Law globalLaw;
     private static Map<String, Law> worldLaws;
-
-    public static Law get(Location location) {
-        return get(location.getWorld());
-    }
 
     public static Law get(World world) {
         Law worldLaw = worldLaws.get(world.getName());
