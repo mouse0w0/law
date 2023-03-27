@@ -1,6 +1,7 @@
 package com.github.mouse0w0.law.listener;
 
 import com.github.mouse0w0.law.config.Law;
+import com.github.mouse0w0.law.util.DamageSourceUtils;
 import com.github.mouse0w0.law.util.EnumUtils;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
@@ -37,22 +39,30 @@ public class LawListener implements Listener {
         World world = entity.getWorld();
         if (Law.get(world).preventEntityExplosion.contains(type)) {
             e.setCancelled(true);
+            e.blockList().clear();
         } else if (Law.get(world).preventEntityBreakBlock.contains(type)) {
             e.blockList().clear();
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onHangingBreakByEntity(HangingBreakByEntityEvent e) {
+    public void onHangingBreak(HangingBreakEvent e) {
         Entity entity = e.getEntity();
-        EntityType type = entity.getType();
-        Law law = Law.get(entity.getWorld());
-        if (type == EntityType.PLAYER) {
-            if (law.preventLeftClickEntity.contains(type) && !entity.hasPermission("law.bypass.left-click-entity")) {
+        Entity remover = DamageSourceUtils.getEntityDamage();
+        if (remover == null && e instanceof HangingBreakByEntityEvent) {
+            remover = ((HangingBreakByEntityEvent) e).getRemover();
+        }
+        if (remover == null) {
+            return;
+        }
+        EntityType removerType = remover.getType();
+        if (removerType == EntityType.PLAYER) {
+            if (Law.get(remover.getWorld()).preventLeftClickEntity.contains(entity.getType()) && !remover.hasPermission("law.bypass.left-click-remover")) {
                 e.setCancelled(true);
             }
         } else {
-            if (law.preventEntityBreakBlock.contains(type) || law.preventEntityExplosion.contains(type)) {
+            Law law = Law.get(remover.getWorld());
+            if (law.preventEntityBreakBlock.contains(removerType) || law.preventEntityExplosion.contains(removerType)) {
                 e.setCancelled(true);
             }
         }
