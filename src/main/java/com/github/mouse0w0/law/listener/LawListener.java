@@ -275,11 +275,18 @@ public class LawListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onPlayerInteractEntity(EntityDamageByEntityEvent e) {
-        if (e.getDamager().getType() == EntityType.PLAYER) {
-            Entity entity = e.getEntity();
-            if (Law.get(entity.getWorld()).preventLeftClickEntity.contains(entity.getType()) && !entity.hasPermission("law.bypass.left-click-entity")) {
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
+        if (e.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
+            Entity damager = e.getDamager();
+            if (Law.get(damager.getWorld()).preventEntityExplosion.contains(damager.getType())) {
                 e.setCancelled(true);
+            }
+        } else {
+            if (e.getDamager().getType() == EntityType.PLAYER) {
+                Entity entity = e.getEntity();
+                if (Law.get(entity.getWorld()).preventLeftClickEntity.contains(entity.getType()) && !entity.hasPermission("law.bypass.left-click-entity")) {
+                    e.setCancelled(true);
+                }
             }
         }
     }
