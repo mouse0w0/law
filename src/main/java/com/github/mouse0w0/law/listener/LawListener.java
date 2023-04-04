@@ -27,7 +27,7 @@ public class LawListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityPortal(EntityPortalEvent e) {
         Entity entity = e.getEntity();
-        if (Law.get(entity.getWorld()).preventEntityTeleportByPortal.contains(entity.getType())) {
+        if (Law.get(entity.getWorld()).preventEntityTeleportByPortal.test(entity.getType())) {
             e.setCancelled(true);
         }
     }
@@ -37,10 +37,10 @@ public class LawListener implements Listener {
         Entity entity = e.getEntity();
         EntityType type = entity.getType();
         World world = entity.getWorld();
-        if (Law.get(world).preventEntityExplosion.contains(type)) {
+        if (Law.get(world).preventEntityExplosion.test(type)) {
             e.setCancelled(true);
             e.blockList().clear();
-        } else if (Law.get(world).preventEntityBreakBlock.contains(type)) {
+        } else if (Law.get(world).preventEntityBreakBlock.test(type)) {
             e.blockList().clear();
         }
     }
@@ -57,12 +57,12 @@ public class LawListener implements Listener {
         }
         EntityType removerType = remover.getType();
         if (removerType == EntityType.PLAYER) {
-            if (Law.get(remover.getWorld()).preventLeftClickEntity.contains(entity.getType()) && !remover.hasPermission("law.bypass.left-click-remover")) {
+            if (Law.get(remover.getWorld()).preventLeftClickEntity.test(entity.getType()) && !remover.hasPermission("law.bypass.left-click-remover")) {
                 e.setCancelled(true);
             }
         } else {
             Law law = Law.get(remover.getWorld());
-            if (law.preventEntityBreakBlock.contains(removerType) || law.preventEntityExplosion.contains(removerType)) {
+            if (law.preventEntityBreakBlock.test(removerType) || law.preventEntityExplosion.test(removerType)) {
                 e.setCancelled(true);
             }
         }
@@ -71,7 +71,7 @@ public class LawListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onEntityChangeBlock(EntityChangeBlockEvent e) {
         Entity entity = e.getEntity();
-        if (Law.get(entity.getWorld()).preventEntityBreakBlock.contains(entity.getType())) {
+        if (Law.get(entity.getWorld()).preventEntityBreakBlock.test(entity.getType())) {
             e.setCancelled(true);
         }
     }
@@ -79,7 +79,7 @@ public class LawListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onVehicleEnter(VehicleEnterEvent e) {
         Entity entity = e.getEntered();
-        if (Law.get(entity.getWorld()).preventEntityEnterVehicle.contains(entity.getType())) {
+        if (Law.get(entity.getWorld()).preventEntityEnterVehicle.test(entity.getType())) {
             e.setCancelled(true);
         }
     }
@@ -107,7 +107,7 @@ public class LawListener implements Listener {
                 }
                 break;
             case PLAYER:
-                if (Law.get(entity.getWorld()).preventPlayerDamage.contains(e.getCause())) {
+                if (Law.get(entity.getWorld()).preventPlayerDamage.test(e.getCause())) {
                     e.setCancelled(true);
                 }
                 break;
@@ -263,7 +263,7 @@ public class LawListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockPlace(BlockPlaceEvent e) {
         Block block = e.getBlock();
-        if (Law.get(block.getWorld()).preventPlaceBlock.contains(block.getType()) && !e.getPlayer().hasPermission("law.bypass.place-block")) {
+        if (Law.get(block.getWorld()).preventPlaceBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.place-block")) {
             e.setCancelled(true);
         }
     }
@@ -273,12 +273,12 @@ public class LawListener implements Listener {
         Action action = e.getAction();
         if (action == Action.LEFT_CLICK_BLOCK) {
             Block block = e.getClickedBlock();
-            if (Law.get(block.getWorld()).preventLeftClickBlock.contains(block.getType()) && !e.getPlayer().hasPermission("law.bypass.left-click-block")) {
+            if (Law.get(block.getWorld()).preventLeftClickBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.left-click-block")) {
                 e.setCancelled(true);
             }
         } else if (action == Action.RIGHT_CLICK_BLOCK) {
             Block block = e.getClickedBlock();
-            if (Law.get(block.getWorld()).preventRightClickBlock.contains(block.getType()) && !e.getPlayer().hasPermission("law.bypass.right-click-block")) {
+            if (Law.get(block.getWorld()).preventRightClickBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.right-click-block")) {
                 e.setCancelled(true);
             }
         }
@@ -288,13 +288,13 @@ public class LawListener implements Listener {
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
         if (e.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
             Entity damager = e.getDamager();
-            if (Law.get(damager.getWorld()).preventEntityExplosion.contains(damager.getType())) {
+            if (Law.get(damager.getWorld()).preventEntityExplosion.test(damager.getType())) {
                 e.setCancelled(true);
             }
         } else {
             if (e.getDamager().getType() == EntityType.PLAYER) {
                 Entity entity = e.getEntity();
-                if (Law.get(entity.getWorld()).preventLeftClickEntity.contains(entity.getType()) && !entity.hasPermission("law.bypass.left-click-entity")) {
+                if (Law.get(entity.getWorld()).preventLeftClickEntity.test(entity.getType()) && !entity.hasPermission("law.bypass.left-click-entity")) {
                     e.setCancelled(true);
                 }
             }
@@ -304,14 +304,14 @@ public class LawListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPlayerInteractEntity(PlayerInteractEntityEvent e) {
         Entity entity = e.getRightClicked();
-        if (Law.get(entity.getWorld()).preventRightClickEntity.contains(entity.getType()) && !entity.hasPermission("law.bypass.right-click-entity")) {
+        if (Law.get(entity.getWorld()).preventRightClickEntity.test(entity.getType()) && !entity.hasPermission("law.bypass.right-click-entity")) {
             e.setCancelled(true);
         }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockIgnite(BlockIgniteEvent e) {
-        if (Law.get(e.getBlock().getWorld()).preventIgniteBlock.contains(e.getCause())) {
+        if (Law.get(e.getBlock().getWorld()).preventIgniteBlock.test(e.getCause())) {
             e.setCancelled(true);
         }
     }

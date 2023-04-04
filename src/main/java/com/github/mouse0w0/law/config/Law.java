@@ -11,16 +11,16 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.io.File;
 import java.util.*;
-import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Law {
-    public Set<EntityType> preventEntitySpawn;
-    public Set<EntityType> preventEntityTeleportByPortal;
-    public Set<EntityType> preventEntityExplosion;
-    public Set<EntityType> preventEntityBreakBlock;
-    public Set<EntityType> preventEntityEnterVehicle;
-    public Set<EntityType> preventEntityPickupItem;
-    public Set<EntityDamageEvent.DamageCause> preventPlayerDamage;
+    public Predicate<EntityType> preventEntitySpawn;
+    public Predicate<EntityType> preventEntityTeleportByPortal;
+    public Predicate<EntityType> preventEntityExplosion;
+    public Predicate<EntityType> preventEntityBreakBlock;
+    public Predicate<EntityType> preventEntityEnterVehicle;
+    public Predicate<EntityType> preventEntityPickupItem;
+    public Predicate<EntityDamageEvent.DamageCause> preventPlayerDamage;
     public boolean preventItemDamageByExplosion;
     public boolean preventItemDamageByFire;
     public boolean preventVillagerToWitch;
@@ -52,12 +52,12 @@ public class Law {
     public boolean disableWeatherRaining;
     public boolean disableWeatherThunder;
     public boolean disableWeatherLightning;
-    public Set<Material> preventPlaceBlock;
-    public Set<Material> preventLeftClickBlock;
-    public Set<Material> preventRightClickBlock;
-    public Set<EntityType> preventLeftClickEntity;
-    public Set<EntityType> preventRightClickEntity;
-    public Set<BlockIgniteEvent.IgniteCause> preventIgniteBlock;
+    public Predicate<Material> preventPlaceBlock;
+    public Predicate<Material> preventLeftClickBlock;
+    public Predicate<Material> preventRightClickBlock;
+    public Predicate<EntityType> preventLeftClickEntity;
+    public Predicate<EntityType> preventRightClickEntity;
+    public Predicate<BlockIgniteEvent.IgniteCause> preventIgniteBlock;
 
     private static Law globalLaw;
     private static Map<String, Law> worldLaws;
@@ -89,13 +89,13 @@ public class Law {
 
     private static Law load(ConfigurationSection config) {
         Law law = new Law();
-        law.preventEntitySpawn = mapToSet(config.getStringList("prevent-entity-spawn"), EntityType::valueOf);
-        law.preventEntityTeleportByPortal = mapToSet(config.getStringList("prevent-entity-teleport-by-portal"), EntityType::valueOf);
-        law.preventEntityExplosion = mapToSet(config.getStringList("prevent-entity-explosion"), EntityType::valueOf);
-        law.preventEntityBreakBlock = mapToSet(config.getStringList("prevent-entity-break-block"), EntityType::valueOf);
-        law.preventEntityEnterVehicle = mapToSet(config.getStringList("prevent-entity-enter-vehicle"), EntityType::valueOf);
-        law.preventEntityPickupItem = mapToSet(config.getStringList("prevent-entity-pickup-item"), EntityType::valueOf);
-        law.preventPlayerDamage = mapToSet(config.getStringList("prevent-player-damage"), EntityDamageEvent.DamageCause::valueOf);
+        law.preventEntitySpawn = getEnumPredicate(config, "prevent-entity-spawn", EntityType.class);
+        law.preventEntityTeleportByPortal = getEnumPredicate(config, "prevent-entity-teleport-by-portal", EntityType.class);
+        law.preventEntityExplosion = getEnumPredicate(config, "prevent-entity-explosion", EntityType.class);
+        law.preventEntityBreakBlock = getEnumPredicate(config, "prevent-entity-break-block", EntityType.class);
+        law.preventEntityEnterVehicle = getEnumPredicate(config, "prevent-entity-enter-vehicle", EntityType.class);
+        law.preventEntityPickupItem = getEnumPredicate(config, "prevent-entity-pickup-item", EntityType.class);
+        law.preventPlayerDamage = getEnumPredicate(config, "prevent-player-damage", EntityDamageEvent.DamageCause.class);
         law.preventItemDamageByExplosion = config.getBoolean("prevent-item-damage-by-explosion");
         law.preventItemDamageByFire = config.getBoolean("prevent-item-damage-by-fire");
         law.preventVillagerToWitch = config.getBoolean("prevent-villager-to-witch");
@@ -127,26 +127,41 @@ public class Law {
         law.disableWeatherRaining = config.getBoolean("disable-weather-raining");
         law.disableWeatherThunder = config.getBoolean("disable-weather-thunder");
         law.disableWeatherLightning = config.getBoolean("disable-weather-lightning");
-        law.preventPlaceBlock = mapToSet(config.getStringList("prevent-place-block"), Material::valueOf);
-        law.preventLeftClickBlock = mapToSet(config.getStringList("prevent-left-click-block"), Material::valueOf);
-        law.preventRightClickBlock = mapToSet(config.getStringList("prevent-right-click-block"), Material::valueOf);
-        law.preventLeftClickEntity = mapToSet(config.getStringList("prevent-left-click-entity"), EntityType::valueOf);
-        law.preventRightClickEntity = mapToSet(config.getStringList("prevent-right-click-entity"), EntityType::valueOf);
-        law.preventIgniteBlock = mapToSet(config.getStringList("prevent-ignite-block"), BlockIgniteEvent.IgniteCause::valueOf);
+        law.preventPlaceBlock = getEnumPredicate(config, "prevent-place-block", Material.class);
+        law.preventLeftClickBlock = getEnumPredicate(config, "prevent-left-click-block", Material.class);
+        law.preventRightClickBlock = getEnumPredicate(config, "prevent-right-click-block", Material.class);
+        law.preventLeftClickEntity = getEnumPredicate(config, "prevent-left-click-entity", EntityType.class);
+        law.preventRightClickEntity = getEnumPredicate(config, "prevent-right-click-entity", EntityType.class);
+        law.preventIgniteBlock = getEnumPredicate(config, "prevent-ignite-block", BlockIgniteEvent.IgniteCause.class);
         return law;
     }
 
-    private static <T, R> Set<R> mapToSet(Collection<T> collection, Function<T, R> mapper) {
-        if (collection == null || collection.isEmpty()) {
-            return Collections.emptySet();
-        }
-        HashSet<R> result = new HashSet<>();
-        for (T t : collection) {
-            try {
-                result.add(mapper.apply(t));
-            } catch (IllegalArgumentException ignored) {
+    private static final Predicate<?> ALWAYS_FALSE = o -> false;
+    private static final Predicate<?> ALWAYS_TRUE = o -> true;
+
+    @SuppressWarnings("unchecked")
+    private static <E extends Enum<E>> Predicate<E> getEnumPredicate(ConfigurationSection section, String path, Class<E> enumClass) {
+        Object value = section.get(path);
+        if (Boolean.TRUE.equals(value)) {
+            return (Predicate<E>) ALWAYS_TRUE;
+        } else if (value instanceof List) {
+            List<String> stringList = (List<String>) value;
+            if (stringList.isEmpty()) {
+                return (Predicate<E>) ALWAYS_FALSE;
             }
+            Set<E> enumSet = new HashSet<>();
+            for (String enumName : stringList) {
+                try {
+                    enumSet.add(Enum.valueOf(enumClass, enumName));
+                } catch (IllegalArgumentException ignored) {
+                }
+            }
+            if (enumSet.isEmpty()) {
+                return (Predicate<E>) ALWAYS_FALSE;
+            }
+            return enumSet::contains;
+        } else {
+            return (Predicate<E>) ALWAYS_FALSE;
         }
-        return result;
     }
 }

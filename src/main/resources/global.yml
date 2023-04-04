@@ -1,15 +1,18 @@
 # 阻止实体生成（1.7及以上版本）
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-entity-spawn: true时匹配所有实体
 prevent-entity-spawn: []
 
 # 阻止实体通过传送门
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-entity-teleport-by-portal: true时匹配所有实体
 prevent-entity-teleport-by-portal: []
 
 # 阻止实体爆炸
 # 苦力怕（CREEPER）、TNT（PRIMED_TNT）、末影水晶（ENDER_CRYSTAL）
 # 凋零头颅（WITHER_SKULL）、恶魂火球（FIREBALL）、TNT矿车（MINECART_TNT）
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-entity-explosion: true时匹配所有实体
 prevent-entity-explosion: []
 
 # 阻止实体破坏方块、画以及展示框
@@ -17,18 +20,22 @@ prevent-entity-explosion: []
 # 恶魂火球（FIREBALL）、烈焰人火球（SMALL_FIREBALL）、TNT矿车（MINECART_TNT）、末影人（ENDERMAN）
 # 僵尸（ZOMBIE）、凋零（WITHER）、羊（SHEEP）、劫掠兽（RAVAGER）
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-entity-break-block: true时匹配所有实体
 prevent-entity-break-block: [CREEPER, PRIMED_TNT, ENDER_CRYSTAL, WITHER, WITHER_SKULL, FIREBALL, SMALL_FIREBALL, MINECART_TNT, ENDERMAN]
 
 # 阻止实体乘坐载具
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-entity-enter-vehicle: true时匹配所有实体
 prevent-entity-enter-vehicle: []
 
 # 阻止实体捡起物品
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-entity-pickup-item: true时匹配所有实体
 prevent-entity-pickup-item: []
 
 # 阻止玩家受到伤害
 # 可用伤害类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html
+# prevent-player-damage: true时匹配所有伤害类型
 prevent-player-damage: []
 
 # 阻止物品受到爆炸伤害
@@ -126,24 +133,30 @@ disable-weather-lightning: false
 
 # 阻止放置方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-place-block: true时匹配所有方块
 prevent-place-block: []
 
 # 阻止左键交互方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-left-click-block: true时匹配所有方块
 prevent-left-click-block: []
 
 # 阻止右键交互方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-right-click-block: true时匹配所有方块
 prevent-right-click-block: []
 
 # 阻止左键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-left-click-entity: true时匹配所有实体
 prevent-left-click-entity: []
 
 # 阻止右键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-right-click-entity: true时匹配所有实体
 prevent-right-click-entity: []
 
 # 阻止点燃方块
 # 可用点燃类型：https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/block/BlockIgniteEvent.IgniteCause.html
+# prevent-ignite-block: true时匹配所有点燃原因
 prevent-ignite-block: []
