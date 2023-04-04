@@ -57,7 +57,7 @@ public class LawListener implements Listener {
         }
         EntityType removerType = remover.getType();
         if (removerType == EntityType.PLAYER) {
-            if (Law.get(remover.getWorld()).preventLeftClickEntity.test(entity.getType()) && !remover.hasPermission("law.bypass.left-click-remover")) {
+            if (Law.get(remover.getWorld()).preventLeftClickEntity.test(entity.getType()) && !remover.hasPermission("law.bypass.left-click-entity")) {
                 e.setCancelled(true);
             }
         } else {
