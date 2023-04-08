@@ -292,9 +292,9 @@ public class LawListener implements Listener {
                 e.setCancelled(true);
             }
         } else {
-            if (e.getDamager().getType() == EntityType.PLAYER) {
-                Entity entity = e.getEntity();
-                if (Law.get(entity.getWorld()).preventLeftClickEntity.test(entity.getType()) && !entity.hasPermission("law.bypass.left-click-entity")) {
+            Entity damager = e.getDamager();
+            if (damager.getType() == EntityType.PLAYER) {
+                if (Law.get(damager.getWorld()).preventLeftClickEntity.test(e.getEntity().getType()) && !damager.hasPermission("law.bypass.left-click-entity")) {
                     e.setCancelled(true);
                 }
             }
