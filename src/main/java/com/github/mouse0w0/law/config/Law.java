@@ -53,6 +53,7 @@ public class Law {
     public boolean disableWeatherThunder;
     public boolean disableWeatherLightning;
     public Predicate<Material> preventPlaceBlock;
+    public Predicate<Material> preventBreakBlock;
     public Predicate<Material> preventLeftClickBlock;
     public Predicate<Material> preventRightClickBlock;
     public Predicate<EntityType> preventLeftClickEntity;
@@ -128,6 +129,7 @@ public class Law {
         law.disableWeatherThunder = config.getBoolean("disable-weather-thunder");
         law.disableWeatherLightning = config.getBoolean("disable-weather-lightning");
         law.preventPlaceBlock = getEnumPredicate(config, "prevent-place-block", Material.class);
+        law.preventBreakBlock = getEnumPredicate(config, "prevent-break-block", Material.class);
         law.preventLeftClickBlock = getEnumPredicate(config, "prevent-left-click-block", Material.class);
         law.preventRightClickBlock = getEnumPredicate(config, "prevent-right-click-block", Material.class);
         law.preventLeftClickEntity = getEnumPredicate(config, "prevent-left-click-entity", EntityType.class);

@@ -269,6 +269,14 @@ public class LawListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    public void onBlockBreak(BlockBreakEvent e) {
+        Block block = e.getBlock();
+        if (Law.get(block.getWorld()).preventBreakBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.break-block")) {
+            e.setCancelled(true);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteractBlock(PlayerInteractEvent e) {
         Action action = e.getAction();
         if (action == Action.LEFT_CLICK_BLOCK) {

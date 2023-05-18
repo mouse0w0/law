@@ -1,7 +1,7 @@
 # 插件介绍
 本插件基于Bukkit API开发，用于在服务器中控制实体和方块行为，并为不同世界设置不同规则。本插件基于1.16.5开发，但已完成全版本兼容，除部分功能无法在较低版本运行外，其余功能均可运行。插件功能如下所示：
 - 阻止实体生成、通过传送门、爆炸、破坏方块、乘坐载具、捡起物品。
-- 阻止玩家受到伤害、放置方块、点击方块和实体。
+- 阻止玩家受到伤害、放置方块、破坏方块、点击方块和实体。
 - 阻止物品受到爆炸、火焰和岩浆伤害。
 - 阻止生物转变（村民、女巫、僵尸村民、溺尸、苦力怕、僵尸猪人、蘑菇牛）。
 - 阻止火焰蔓延、烧毁方块、熄灭。
@@ -165,6 +165,11 @@ disable-weather-lightning: false
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # prevent-place-block: true时匹配所有方块
 prevent-place-block: []
+
+# 阻止破坏方块
+# 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-break-block: true时匹配所有方块
+prevent-break-block: []
 
 # 阻止左键交互方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html

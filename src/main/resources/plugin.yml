@@ -12,6 +12,8 @@ permissions:
     default: op
   law.bypass.place-block:
     default: false
+  law.bypass.break-block:
+    default: false
   law.bypass.left-click-block:
     default: false
   law.bypass.right-click-block:

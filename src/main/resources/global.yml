@@ -136,6 +136,11 @@ disable-weather-lightning: false
 # prevent-place-block: true时匹配所有方块
 prevent-place-block: []
 
+# 阻止破坏方块
+# 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-break-block: true时匹配所有方块
+prevent-break-block: []
+
 # 阻止左键交互方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # prevent-left-click-block: true时匹配所有方块
