@@ -131,32 +131,32 @@ disable-weather-thunder: false
 # 禁用下雨和雷暴打雷
 disable-weather-lightning: false
 
-# 阻止放置方块
+# 阻止玩家放置方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # prevent-place-block: true时匹配所有方块
 prevent-place-block: []
 
-# 阻止破坏方块
+# 阻止玩家破坏方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # prevent-break-block: true时匹配所有方块
 prevent-break-block: []
 
-# 阻止左键交互方块
+# 阻止玩家左键交互方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # prevent-left-click-block: true时匹配所有方块
 prevent-left-click-block: []
 
-# 阻止右键交互方块
+# 阻止玩家右键交互方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # prevent-right-click-block: true时匹配所有方块
 prevent-right-click-block: []
 
-# 阻止左键交互实体
+# 阻止玩家左键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # prevent-left-click-entity: true时匹配所有实体
 prevent-left-click-entity: []
 
-# 阻止右键交互实体
+# 阻止玩家右键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # prevent-right-click-entity: true时匹配所有实体
 prevent-right-click-entity: []
