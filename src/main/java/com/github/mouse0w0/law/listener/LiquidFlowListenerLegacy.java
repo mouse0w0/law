@@ -17,7 +17,7 @@ public class LiquidFlowListenerLegacy implements Listener {
     private static final Set<Material> LAVA = EnumUtils.allOf(Material.class,
             "LAVA", "STATIONARY_LAVA");
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockFromTo(BlockFromToEvent e) {
         Block block = e.getBlock();
         Material type = block.getType();

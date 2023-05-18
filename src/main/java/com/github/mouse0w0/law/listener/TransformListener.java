@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityTransformEvent;
 
 public class TransformListener implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityTransform(EntityTransformEvent e) {
         Entity entity = e.getEntity();
         switch (e.getTransformReason()) {

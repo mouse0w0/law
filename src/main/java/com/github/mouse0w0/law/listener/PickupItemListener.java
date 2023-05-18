@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 
 public class PickupItemListener implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityPickupItem(EntityPickupItemEvent e) {
         Entity entity = e.getEntity();
         if (Law.get(entity.getWorld()).preventEntityPickupItem.test(e.getEntityType())) {

@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.weather.LightningStrikeEvent;
 
 public class LightningStrikeListenerLegacy implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onThunderChange(LightningStrikeEvent e) {
         if (Law.get(e.getWorld()).disableWeatherLightning) {
             e.setCancelled(true);

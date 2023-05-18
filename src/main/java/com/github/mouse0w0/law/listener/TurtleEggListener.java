@@ -11,7 +11,7 @@ import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class TurtleEggListener implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityInteract(EntityInteractEvent e) {
         Block block = e.getBlock();
         if (block.getType() == Material.TURTLE_EGG && Law.get(block.getWorld()).preventTurtleEggTrampling) {
@@ -19,7 +19,7 @@ public class TurtleEggListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent e) {
         if (e.getAction() == Action.PHYSICAL) {
             Block block = e.getClickedBlock();

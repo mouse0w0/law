@@ -24,7 +24,7 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import java.util.Set;
 
 public class LawListener implements Listener {
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityPortal(EntityPortalEvent e) {
         Entity entity = e.getEntity();
         if (Law.get(entity.getWorld()).preventEntityTeleportByPortal.test(entity.getType())) {
@@ -32,7 +32,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityExplode(EntityExplodeEvent e) {
         Entity entity = e.getEntity();
         EntityType type = entity.getType();
@@ -45,7 +45,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onHangingBreak(HangingBreakEvent e) {
         Entity entity = e.getEntity();
         Entity remover = DamageSourceUtils.getEntityDamage();
@@ -68,7 +68,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityChangeBlock(EntityChangeBlockEvent e) {
         Entity entity = e.getEntity();
         if (Law.get(entity.getWorld()).preventEntityBreakBlock.test(entity.getType())) {
@@ -76,7 +76,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onVehicleEnter(VehicleEnterEvent e) {
         Entity entity = e.getEntered();
         if (Law.get(entity.getWorld()).preventEntityEnterVehicle.test(entity.getType())) {
@@ -84,7 +84,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityDamage(EntityDamageEvent e) {
         Entity entity = e.getEntity();
         switch (entity.getType()) {
@@ -114,7 +114,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onCreeperPower(CreeperPowerEvent e) {
         if (e.getCause() == CreeperPowerEvent.PowerCause.LIGHTNING) {
             if (Law.get(e.getEntity().getWorld()).preventCreeperCharge) {
@@ -123,7 +123,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockSpread(BlockSpreadEvent e) {
         Block block = e.getSource();
         if (block.getType() == Material.FIRE && Law.get(block.getWorld()).preventFireSpread) {
@@ -131,7 +131,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockBurn(BlockBurnEvent e) {
         if (Law.get(e.getBlock().getWorld()).preventFireBurn) {
             e.setCancelled(true);
@@ -144,7 +144,7 @@ public class LawListener implements Listener {
             "TUBE_CORAL_FAN", "BRAIN_CORAL_FAN", "BUBBLE_CORAL_FAN", "FIRE_CORAL_FAN", "HORN_CORAL_FAN",
             "TUBE_CORAL_WALL_FAN", "BRAIN_CORAL_WALL_FAN", "BUBBLE_CORAL_WALL_FAN", "FIRE_CORAL_WALL_FAN", "HORN_CORAL_WALL_FAN");
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockFade(BlockFadeEvent e) {
         Block block = e.getBlock();
         Material type = block.getType();
@@ -167,7 +167,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockForm(BlockFormEvent e) {
         if (e instanceof EntityBlockFormEvent) {
             Entity entity = ((EntityBlockFormEvent) e).getEntity();
@@ -198,7 +198,7 @@ public class LawListener implements Listener {
     private static final Material DRAGON_EGG = EnumUtils.oneOf(Material.class,
             "DRAGON_EGG");
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityInteract(EntityInteractEvent e) {
         Block block = e.getBlock();
         if (block.getType() == FARMLAND && Law.get(block.getWorld()).preventFarmlandDecay) {
@@ -206,7 +206,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteract(PlayerInteractEvent e) {
         switch (e.getAction()) {
             case PHYSICAL: {
@@ -226,14 +226,14 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onLeavesDecay(LeavesDecayEvent e) {
         if (Law.get(e.getBlock().getWorld()).preventLeavesDecay) {
             e.setCancelled(true);
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerDeath(PlayerDeathEvent e) {
         Law law = Law.get(e.getEntity().getWorld());
         if (law.keepInventoryOnDeath) {
@@ -246,21 +246,21 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onWeatherChange(WeatherChangeEvent e) {
         if (e.toWeatherState() && Law.get(e.getWorld()).disableWeatherRaining) {
             e.setCancelled(true);
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onThunderChange(ThunderChangeEvent e) {
         if (e.toThunderState() && Law.get(e.getWorld()).disableWeatherThunder) {
             e.setCancelled(true);
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockPlace(BlockPlaceEvent e) {
         Block block = e.getBlock();
         if (Law.get(block.getWorld()).preventPlaceBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.place-block")) {
@@ -268,7 +268,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteractBlock(PlayerInteractEvent e) {
         Action action = e.getAction();
         if (action == Action.LEFT_CLICK_BLOCK) {
@@ -284,7 +284,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
         if (e.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
             Entity damager = e.getDamager();
@@ -301,7 +301,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteractEntity(PlayerInteractEntityEvent e) {
         Entity entity = e.getRightClicked();
         if (Law.get(entity.getWorld()).preventRightClickEntity.test(entity.getType()) && !entity.hasPermission("law.bypass.right-click-entity")) {
@@ -309,7 +309,7 @@ public class LawListener implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockIgnite(BlockIgniteEvent e) {
         if (Law.get(e.getBlock().getWorld()).preventIgniteBlock.test(e.getCause())) {
             e.setCancelled(true);
