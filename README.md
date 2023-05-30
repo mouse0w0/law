@@ -222,6 +222,7 @@ prevent-ignite-block: []
 - `law.admin.reload` - 重载插件的配置文件。
 - `law.admin.world` - 查看当前所在世界名。
 - `law.bypass.place-block` - 绕过放置方块检查。
+- `law.bypass.break-block` - 绕过方块破坏检查。
 - `law.bypass.left-click-block` - 绕过左键点击方块检查。
 - `law.bypass.right-click-block` - 绕过右键点击方块检查。
 - `law.bypass.left-click-entity` - 绕过左键点击实体检查。
