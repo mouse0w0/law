@@ -14,9 +14,7 @@ public class NmsUtils {
             Server server = Bukkit.getServer();
             Class<?> classCraftServer = server.getClass();
             Field fieldConsole = classCraftServer.getDeclaredField("console");
-            fieldConsole.setAccessible(true);
-            Object console = fieldConsole.get(server);
-            Class<?> classMinecraftServer = console.getClass();
+            Class<?> classMinecraftServer = fieldConsole.getType();
             String classNameCraftServer = classCraftServer.getName();
             String classNameMinecraftServer = classMinecraftServer.getName();
             packageCraftBukkit = classNameCraftServer.substring(0, classNameCraftServer.lastIndexOf('.'));
