@@ -33,16 +33,29 @@ prevent-entity-enter-vehicle: []
 # prevent-entity-pickup-item: true时匹配所有实体
 prevent-entity-pickup-item: []
 
-# 阻止玩家受到伤害
+# 阻止实体受到伤害
+# 对画和展示框无效
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用伤害类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html
-# prevent-player-damage: true时匹配所有伤害类型
-prevent-player-damage: []
+# prevent-entity-damage: true时阻止所有实体受到伤害
+prevent-entity-damage:
+  # 阻止盔甲架受到爆炸伤害
+  ARMOR_STAND: [ENTITY_EXPLOSION, BLOCK_EXPLOSION]
+  # 阻止玩家受到伤害
+  # PLAYER: []
+  # 阻止物品受到爆炸伤害
+  # DROPPED_ITEM: [ENTITY_EXPLOSION, BLOCK_EXPLOSION]
+  # 阻止物品受到火焰和岩浆伤害
+  # DROPPED_ITEM: [LAVA, FIRE, FIRE_TICK]
 
-# 阻止物品受到爆炸伤害
-prevent-item-damage-by-explosion: false
-
-# 阻止物品受到火焰和岩浆伤害
-prevent-item-damage-by-fire: false
+# 阻止实体受到实体伤害
+# 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# prevent-entity-damage-by-entity: true时阻止所有实体受到实体伤害
+prevent-entity-damage-by-entity:
+  # 示例
+  _UNKNOWN: []
+  # 阻止玩家受到铁傀儡伤害
+  # PLAYER: [IRON_GOLEM]
 
 # 阻止村民转变为女巫（1.13及以上版本）
 prevent-villager-to-witch: false

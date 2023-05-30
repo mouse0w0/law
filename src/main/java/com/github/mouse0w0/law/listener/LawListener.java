@@ -87,30 +87,8 @@ public class LawListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityDamage(EntityDamageEvent e) {
         Entity entity = e.getEntity();
-        switch (entity.getType()) {
-            case DROPPED_ITEM:
-                EntityDamageEvent.DamageCause cause = e.getCause();
-                switch (e.getCause()) {
-                    case ENTITY_EXPLOSION:
-                    case BLOCK_EXPLOSION:
-                        if (Law.get(entity.getWorld()).preventItemDamageByExplosion) {
-                            e.setCancelled(true);
-                        }
-                        break;
-                    case LAVA:
-                    case FIRE:
-                    case FIRE_TICK:
-                        if (Law.get(entity.getWorld()).preventItemDamageByFire) {
-                            e.setCancelled(true);
-                        }
-                        break;
-                }
-                break;
-            case PLAYER:
-                if (Law.get(entity.getWorld()).preventPlayerDamage.test(e.getCause())) {
-                    e.setCancelled(true);
-                }
-                break;
+        if (Law.get(entity.getWorld()).preventEntityDamage.test(entity.getType(), e.getCause())) {
+            e.setCancelled(true);
         }
     }
 
@@ -294,15 +272,21 @@ public class LawListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
+        Entity entity = e.getEntity();
+        Entity damager = e.getDamager();
+        Law law = Law.get(entity.getWorld());
+        if (law.preventEntityDamageByEntity.test(entity.getType(), damager.getType())) {
+            e.setCancelled(true);
+            return;
+        }
+
         if (e.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION) {
-            Entity damager = e.getDamager();
-            if (Law.get(damager.getWorld()).preventEntityExplosion.test(damager.getType())) {
+            if (law.preventEntityExplosion.test(damager.getType())) {
                 e.setCancelled(true);
             }
         } else {
-            Entity damager = e.getDamager();
             if (damager.getType() == EntityType.PLAYER) {
-                if (Law.get(damager.getWorld()).preventLeftClickEntity.test(e.getEntity().getType()) && !damager.hasPermission("law.bypass.left-click-entity")) {
+                if (law.preventLeftClickEntity.test(entity.getType()) && !damager.hasPermission("law.bypass.left-click-entity")) {
                     e.setCancelled(true);
                 }
             }
