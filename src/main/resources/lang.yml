@@ -4,10 +4,15 @@ update-check-message: |-
   §f插件发布地址: §b{2}
   §f插件仓库地址: §b{3}
 command-help-message: |-
-  §f/law reload §6- 重载插件的配置文件。
-  §f/law world §6- 查看当前所在世界名。
+  §f/law reload §6- 重载插件的配置文件
+  §f/law world §6- 查看当前所在世界名
+  §f/law query §6- 切换查询模式（点击方块或实体查看其名）
 command-reload-message: §a配置文件重载完成。
 command-world-message: §f当前所在世界为： {0}。
+command-query-enabled: §a查询模式已启用。
+command-query-disabled: §c查询模式已禁用。
 command-usage-message: §f未知的指令。输入"/law help"查看帮助。
 command-no-permission: §c没有足够的权限。
 command-no-player: §c仅玩家可执行该指令。
+click-block-message: §f当前点击方块为： {0}。
+click-entity-message: §f当前点击实体为： {0}。
