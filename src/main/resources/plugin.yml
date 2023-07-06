@@ -1,6 +1,6 @@
 name: Law
 main: com.github.mouse0w0.law.Main
-version: 2.0.0
+version: 2.1.0
 api-version: 1.13
 author: Mouse0w0
 commands:
