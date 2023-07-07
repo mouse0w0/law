@@ -213,15 +213,16 @@ prevent-ignite-block: []
 如果要为每个世界单独配置规则，需要在`worlds`文件夹下创建对应世界名的`yml`文件，例如主世界：`world.yml`，下界：`DIM-1.yml`。并将需要覆盖的全局配置的配置项，写入到相应世界的配置文件中，然后使用`UTF-8`编码格式保存配置文件。
 
 # 指令列表
-- `/law help` - 查看插件指令帮助
-- `/law reload` - 重载插件的配置文件
-- `/law world` - 查看当前所在世界名
-- `/law query` - 切换查询模式（点击方块或实体查看其名）
+- `/law help` - 查看插件指令帮助。
+- `/law reload` - 重载插件的配置文件。
+- `/law world` - 查看当前所在世界名。
+- `/law query` - 切换查询模式（点击方块或实体查看其名）。
 
 # 权限列表
 - `law.admin.help` - 查看插件指令帮助。
 - `law.admin.reload` - 重载插件的配置文件。
 - `law.admin.world` - 查看当前所在世界名。
+- `law.admin.query` - 切换查询模式（点击方块或实体查看其名）。
 - `law.bypass.place-block` - 绕过放置方块检查。
 - `law.bypass.break-block` - 绕过方块破坏检查。
 - `law.bypass.left-click-block` - 绕过左键点击方块检查。
