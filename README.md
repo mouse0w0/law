@@ -30,11 +30,13 @@
 ```yaml
 # 阻止实体生成（1.7及以上版本）
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # prevent-entity-spawn: true时匹配所有实体
 prevent-entity-spawn: []
 
 # 阻止实体通过传送门
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # prevent-entity-teleport-by-portal: true时匹配所有实体
 prevent-entity-teleport-by-portal: []
 
@@ -42,6 +44,7 @@ prevent-entity-teleport-by-portal: []
 # 苦力怕（CREEPER）、TNT（PRIMED_TNT）、末影水晶（ENDER_CRYSTAL）
 # 凋零头颅（WITHER_SKULL）、恶魂火球（FIREBALL）、TNT矿车（MINECART_TNT）
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # prevent-entity-explosion: true时匹配所有实体
 prevent-entity-explosion: []
 
@@ -50,16 +53,19 @@ prevent-entity-explosion: []
 # 恶魂火球（FIREBALL）、烈焰人火球（SMALL_FIREBALL）、TNT矿车（MINECART_TNT）、末影人（ENDERMAN）
 # 僵尸（ZOMBIE）、凋零（WITHER）、羊（SHEEP）、劫掠兽（RAVAGER）
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # prevent-entity-break-block: true时匹配所有实体
 prevent-entity-break-block: [CREEPER, PRIMED_TNT, ENDER_CRYSTAL, WITHER, WITHER_SKULL, FIREBALL, SMALL_FIREBALL, MINECART_TNT, ENDERMAN]
 
 # 阻止实体乘坐载具
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # prevent-entity-enter-vehicle: true时匹配所有实体
 prevent-entity-enter-vehicle: []
 
 # 阻止实体捡起物品
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # prevent-entity-pickup-item: true时匹配所有实体
 prevent-entity-pickup-item: []
 
@@ -196,11 +202,13 @@ prevent-right-click-block: []
 
 # 阻止玩家左键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # prevent-left-click-entity: true时匹配所有实体
 prevent-left-click-entity: []
 
 # 阻止玩家右键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # prevent-right-click-entity: true时匹配所有实体
 prevent-right-click-entity: []
 
@@ -233,8 +241,8 @@ prevent-ignite-block: []
 # 下载插件
 
 - [百度网盘下载](https://pan.baidu.com/s/1V3YTptQWiRpBMlSglfwy-A?pwd=ffjc)
-- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F2.1.0%2FLaw-2.1.0.jar)
-- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/2.1.0/Law-2.1.0.jar)
+- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F2.2.0%2FLaw-2.2.0.jar)
+- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/2.2.0/Law-2.2.0.jar)
 
 # 开源信息
 本插件所有源代码托管于Github，使用**BSD-3-Clause license**开源协议。
