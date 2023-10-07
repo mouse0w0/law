@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.*;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
@@ -90,14 +90,14 @@ public class Law {
 
     private static Law load(ConfigurationSection config) {
         Law law = new Law();
-        law.preventEntitySpawn = getPredicate(config, "prevent-entity-spawn", EntityType.class);
-        law.preventEntityTeleportByPortal = getPredicate(config, "prevent-entity-teleport-by-portal", EntityType.class);
-        law.preventEntityExplosion = getPredicate(config, "prevent-entity-explosion", EntityType.class);
-        law.preventEntityBreakBlock = getPredicate(config, "prevent-entity-break-block", EntityType.class);
-        law.preventEntityEnterVehicle = getPredicate(config, "prevent-entity-enter-vehicle", EntityType.class);
-        law.preventEntityPickupItem = getPredicate(config, "prevent-entity-pickup-item", EntityType.class);
-        law.preventEntityDamage = getBiPredicate(config, "prevent-entity-damage", EntityType.class, EntityDamageEvent.DamageCause.class);
-        law.preventEntityDamageByEntity = getBiPredicate(config, "prevent-entity-damage-by-entity", EntityType.class, EntityType.class);
+        law.preventEntitySpawn = getPredicate(config, "prevent-entity-spawn", EntityType.class, ENTITY_TYPE_GROUPS);
+        law.preventEntityTeleportByPortal = getPredicate(config, "prevent-entity-teleport-by-portal", EntityType.class, ENTITY_TYPE_GROUPS);
+        law.preventEntityExplosion = getPredicate(config, "prevent-entity-explosion", EntityType.class, ENTITY_TYPE_GROUPS);
+        law.preventEntityBreakBlock = getPredicate(config, "prevent-entity-break-block", EntityType.class, ENTITY_TYPE_GROUPS);
+        law.preventEntityEnterVehicle = getPredicate(config, "prevent-entity-enter-vehicle", EntityType.class, ENTITY_TYPE_GROUPS);
+        law.preventEntityPickupItem = getPredicate(config, "prevent-entity-pickup-item", EntityType.class, ENTITY_TYPE_GROUPS);
+        law.preventEntityDamage = getBiPredicate(config, "prevent-entity-damage", EntityType.class, EntityDamageEvent.DamageCause.class, null);
+        law.preventEntityDamageByEntity = getBiPredicate(config, "prevent-entity-damage-by-entity", EntityType.class, EntityType.class, ENTITY_TYPE_GROUPS);
         law.preventVillagerToWitch = config.getBoolean("prevent-villager-to-witch");
         law.preventVillagerInfection = config.getBoolean("prevent-villager-infection");
         law.preventVillagerCure = config.getBoolean("prevent-villager-cure");
@@ -127,22 +127,27 @@ public class Law {
         law.disableWeatherRaining = config.getBoolean("disable-weather-raining");
         law.disableWeatherThunder = config.getBoolean("disable-weather-thunder");
         law.disableWeatherLightning = config.getBoolean("disable-weather-lightning");
-        law.preventPlaceBlock = getPredicate(config, "prevent-place-block", Material.class);
-        law.preventBreakBlock = getPredicate(config, "prevent-break-block", Material.class);
-        law.preventLeftClickBlock = getPredicate(config, "prevent-left-click-block", Material.class);
-        law.preventRightClickBlock = getPredicate(config, "prevent-right-click-block", Material.class);
-        law.preventLeftClickEntity = getPredicate(config, "prevent-left-click-entity", EntityType.class);
-        law.preventRightClickEntity = getPredicate(config, "prevent-right-click-entity", EntityType.class);
-        law.preventIgniteBlock = getPredicate(config, "prevent-ignite-block", BlockIgniteEvent.IgniteCause.class);
+        law.preventPlaceBlock = getPredicate(config, "prevent-place-block", Material.class, null);
+        law.preventBreakBlock = getPredicate(config, "prevent-break-block", Material.class, null);
+        law.preventLeftClickBlock = getPredicate(config, "prevent-left-click-block", Material.class, null);
+        law.preventRightClickBlock = getPredicate(config, "prevent-right-click-block", Material.class, null);
+        law.preventLeftClickEntity = getPredicate(config, "prevent-left-click-entity", EntityType.class, ENTITY_TYPE_GROUPS);
+        law.preventRightClickEntity = getPredicate(config, "prevent-right-click-entity", EntityType.class, ENTITY_TYPE_GROUPS);
+        law.preventIgniteBlock = getPredicate(config, "prevent-ignite-block", BlockIgniteEvent.IgniteCause.class, null);
         return law;
     }
 
+    @SuppressWarnings("rawtypes")
+    private static final Predicate FALSE_PREDICATE = t -> false;
+    @SuppressWarnings("rawtypes")
+    private static final Predicate TRUE_PREDICATE = t -> true;
+
     @SuppressWarnings("unchecked")
     private static <T extends Enum<T>>
-    Predicate<T> getPredicate(ConfigurationSection config, String path, Class<T> enumClass) {
+    Predicate<T> getPredicate(ConfigurationSection config, String path, Class<T> enumClass, Map<String, Collection<T>> groups) {
         Object value = config.get(path);
         if (Boolean.TRUE.equals(value)) {
-            return t -> true;
+            return TRUE_PREDICATE;
         } else if (value instanceof List) {
             List<String> enumList = (List<String>) value;
             Set<T> set = new HashSet<>();
@@ -150,40 +155,87 @@ public class Law {
                 try {
                     set.add(Enum.valueOf(enumClass, enumName));
                 } catch (IllegalArgumentException ignored) {
+                    if (groups != null) {
+                        Collection<T> collection = groups.get(enumName);
+                        if (collection != null) {
+                            set.addAll(collection);
+                        }
+                    }
                 }
             }
             if (set.isEmpty()) {
-                return t -> false;
+                return FALSE_PREDICATE;
             }
             return set::contains;
         } else {
-            return t -> false;
+            return TRUE_PREDICATE;
         }
     }
 
+    @SuppressWarnings("rawtypes")
+    private static final BiPredicate FALSE_BI_PREDICATE = (t, u) -> false;
+    @SuppressWarnings("rawtypes")
+    private static final BiPredicate TRUE_BI_PREDICATE = (t, u) -> true;
+
+    @SuppressWarnings("unchecked")
     private static <T extends Enum<T>, U extends Enum<U>>
-    BiPredicate<T, U> getBiPredicate(ConfigurationSection config, String path, Class<T> enumClass0, Class<U> enumClass1) {
+    BiPredicate<T, U> getBiPredicate(ConfigurationSection config, String path, Class<T> enumClass0, Class<U> enumClass1, Map<String, Collection<U>> groups) {
         Object value = config.get(path);
         if (Boolean.TRUE.equals(value)) {
-            return (t, u) -> true;
+            return TRUE_BI_PREDICATE;
         } else if (value instanceof ConfigurationSection) {
             ConfigurationSection section = (ConfigurationSection) value;
             Map<T, Predicate<U>> map = new HashMap<>();
             for (String key : section.getKeys(false)) {
                 try {
-                    map.put(Enum.valueOf(enumClass0, key), getPredicate(section, key, enumClass1));
+                    map.put(Enum.valueOf(enumClass0, key), getPredicate(section, key, enumClass1, groups));
                 } catch (IllegalArgumentException ignored) {
                 }
             }
             if (map.isEmpty()) {
-                return (t, u) -> false;
+                return FALSE_BI_PREDICATE;
             }
             return (t, u) -> {
                 Predicate<U> uPredicate = map.get(t);
                 return uPredicate != null && uPredicate.test(u);
             };
         } else {
-            return (t, u) -> false;
+            return FALSE_BI_PREDICATE;
         }
+    }
+
+    private static final Map<String, Collection<EntityType>> ENTITY_TYPE_GROUPS = new HashMap<>();
+
+    static {
+        List<EntityType> living = new ArrayList<>();
+        List<EntityType> friendly = new ArrayList<>();
+        List<EntityType> hostile = new ArrayList<>();
+        for (EntityType entityType : EntityType.values()) {
+            Class<? extends Entity> entityClass = entityType.getEntityClass();
+            if (entityClass == null) continue;
+
+            if (LivingEntity.class.isAssignableFrom(entityClass) &&
+                    entityType != EntityType.ARMOR_STAND &&
+                    entityType != EntityType.PLAYER) {
+                living.add(entityType);
+            }
+
+            if (Animals.class.isAssignableFrom(entityClass) ||
+                    WaterMob.class.isAssignableFrom(entityClass) ||
+                    Ambient.class.isAssignableFrom(entityClass) ||
+                    AbstractVillager.class.isAssignableFrom(entityClass)) {
+                friendly.add(entityType);
+            }
+
+            if (Monster.class.isAssignableFrom(entityClass) ||
+                    Flying.class.isAssignableFrom(entityClass) ||
+                    Slime.class.isAssignableFrom(entityClass) ||
+                    Boss.class.isAssignableFrom(entityClass)) {
+                hostile.add(entityType);
+            }
+        }
+        ENTITY_TYPE_GROUPS.put("LIVING", living);
+        ENTITY_TYPE_GROUPS.put("FRIENDLY", friendly);
+        ENTITY_TYPE_GROUPS.put("HOSTILE", hostile);
     }
 }
