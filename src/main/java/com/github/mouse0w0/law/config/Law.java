@@ -215,22 +215,22 @@ public class Law {
             if (entityClass == null) continue;
 
             if (LivingEntity.class.isAssignableFrom(entityClass) &&
-                    entityType != EntityType.ARMOR_STAND &&
-                    entityType != EntityType.PLAYER) {
+                    entityType != EntityType.PLAYER &&
+                    !"ARMOR_STAND".equals(entityType.name())) {
                 living.add(entityType);
             }
 
             if (Animals.class.isAssignableFrom(entityClass) ||
                     WaterMob.class.isAssignableFrom(entityClass) ||
                     Ambient.class.isAssignableFrom(entityClass) ||
-                    AbstractVillager.class.isAssignableFrom(entityClass)) {
+                    NPC.class.isAssignableFrom(entityClass)) {
                 friendly.add(entityType);
             }
 
             if (Monster.class.isAssignableFrom(entityClass) ||
                     Flying.class.isAssignableFrom(entityClass) ||
                     Slime.class.isAssignableFrom(entityClass) ||
-                    Boss.class.isAssignableFrom(entityClass)) {
+                    entityType == EntityType.ENDER_DRAGON) {
                 hostile.add(entityType);
             }
         }
