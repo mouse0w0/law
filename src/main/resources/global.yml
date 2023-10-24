@@ -170,6 +170,16 @@ prevent-left-click-block: []
 # prevent-right-click-block: true时匹配所有方块
 prevent-right-click-block: []
 
+# 阻止玩家使用物品
+# 可用物品类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-use-item: true时匹配所有物品
+prevent-use-item: [ ]
+
+# 阻止发射器发射物品
+# 可用物品类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-dispense-item: true时匹配所有物品
+prevent-dispense-item: [ ]
+
 # 阻止玩家左键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）

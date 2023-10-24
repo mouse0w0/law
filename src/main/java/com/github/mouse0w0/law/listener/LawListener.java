@@ -8,6 +8,7 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -256,17 +257,39 @@ public class LawListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onPlayerInteractBlock(PlayerInteractEvent e) {
-        Action action = e.getAction();
-        if (action == Action.LEFT_CLICK_BLOCK) {
-            Block block = e.getClickedBlock();
-            if (Law.get(block.getWorld()).preventLeftClickBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.left-click-block")) {
+        switch (e.getAction()) {
+            case LEFT_CLICK_BLOCK: {
+                Block block = e.getClickedBlock();
+                if (Law.get(block.getWorld()).preventLeftClickBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.left-click-block")) {
+                    e.setCancelled(true);
+                }
+                break;
+            }
+            case RIGHT_CLICK_BLOCK: {
+                Block block = e.getClickedBlock();
+                if (Law.get(block.getWorld()).preventRightClickBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.right-click-block")) {
+                    e.setCancelled(true);
+                }
+                break;
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onPlayerInteractItem(PlayerInteractEvent e) {
+        if (e.hasItem()) {
+            Player player = e.getPlayer();
+            if (Law.get(player.getWorld()).preventUseItem.test(e.getItem().getType()) && !player.hasPermission("law.bypass.use-item")) {
                 e.setCancelled(true);
             }
-        } else if (action == Action.RIGHT_CLICK_BLOCK) {
-            Block block = e.getClickedBlock();
-            if (Law.get(block.getWorld()).preventRightClickBlock.test(block.getType()) && !e.getPlayer().hasPermission("law.bypass.right-click-block")) {
-                e.setCancelled(true);
-            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    public void onBlockDispense(BlockDispenseEvent e) {
+        Block block = e.getBlock();
+        if (Law.get(block.getWorld()).preventDispenseItem.test(e.getItem().getType())) {
+            e.setCancelled(true);
         }
     }
 

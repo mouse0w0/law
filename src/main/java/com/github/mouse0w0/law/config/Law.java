@@ -56,6 +56,8 @@ public class Law {
     public Predicate<Material> preventBreakBlock;
     public Predicate<Material> preventLeftClickBlock;
     public Predicate<Material> preventRightClickBlock;
+    public Predicate<Material> preventUseItem;
+    public Predicate<Material> preventDispenseItem;
     public Predicate<EntityType> preventLeftClickEntity;
     public Predicate<EntityType> preventRightClickEntity;
     public Predicate<BlockIgniteEvent.IgniteCause> preventIgniteBlock;
@@ -131,6 +133,8 @@ public class Law {
         law.preventBreakBlock = getPredicate(config, "prevent-break-block", Material.class, null);
         law.preventLeftClickBlock = getPredicate(config, "prevent-left-click-block", Material.class, null);
         law.preventRightClickBlock = getPredicate(config, "prevent-right-click-block", Material.class, null);
+        law.preventUseItem = getPredicate(config, "prevent-use-item", Material.class, null);
+        law.preventDispenseItem = getPredicate(config, "prevent-dispense-item", Material.class, null);
         law.preventLeftClickEntity = getPredicate(config, "prevent-left-click-entity", EntityType.class, ENTITY_TYPE_GROUPS);
         law.preventRightClickEntity = getPredicate(config, "prevent-right-click-entity", EntityType.class, ENTITY_TYPE_GROUPS);
         law.preventIgniteBlock = getPredicate(config, "prevent-ignite-block", BlockIgniteEvent.IgniteCause.class, null);

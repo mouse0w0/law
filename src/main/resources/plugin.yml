@@ -1,6 +1,6 @@
 name: Law
 main: com.github.mouse0w0.law.Main
-version: 2.2.1
+version: 2.3.0
 api-version: 1.13
 author: Mouse0w0
 commands:
@@ -17,6 +17,8 @@ permissions:
   law.bypass.left-click-block:
     default: false
   law.bypass.right-click-block:
+    default: false
+  law.bypass.use-item:
     default: false
   law.bypass.left-click-entity:
     default: false

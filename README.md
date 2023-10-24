@@ -200,6 +200,16 @@ prevent-left-click-block: []
 # prevent-right-click-block: true时匹配所有方块
 prevent-right-click-block: []
 
+# 阻止玩家使用物品
+# 可用物品类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-use-item: true时匹配所有物品
+prevent-use-item: []
+
+# 阻止发射器发射物品
+# 可用物品类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+# prevent-dispense-item: true时匹配所有物品
+prevent-dispense-item: []
+
 # 阻止玩家左键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
@@ -232,17 +242,18 @@ prevent-ignite-block: []
 - `law.admin.world` - 查看当前所在世界名。
 - `law.admin.query` - 切换查询模式（点击方块或实体查看其名）。
 - `law.bypass.place-block` - 绕过放置方块检查。
-- `law.bypass.break-block` - 绕过方块破坏检查。
+- `law.bypass.break-block` - 绕过破坏方块检查。
 - `law.bypass.left-click-block` - 绕过左键点击方块检查。
 - `law.bypass.right-click-block` - 绕过右键点击方块检查。
+- `law.bypass.use-item` - 绕过使用物品检查。
 - `law.bypass.left-click-entity` - 绕过左键点击实体检查。
 - `law.bypass.right-click-entity` - 绕过右键点击实体检查。
 
 # 下载插件
 
 - [百度网盘下载](https://pan.baidu.com/s/1V3YTptQWiRpBMlSglfwy-A?pwd=ffjc)
-- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F2.2.1%2FLaw-2.2.1.jar)
-- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/2.2.1/Law-2.2.1.jar)
+- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F2.3.0%2FLaw-2.3.0.jar)
+- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/2.3.0/Law-2.3.0.jar)
 
 # 开源信息
 本插件所有源代码托管于Github，使用**BSD-3-Clause license**开源协议。
