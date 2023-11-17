@@ -173,12 +173,12 @@ prevent-right-click-block: []
 # 阻止玩家使用物品
 # 可用物品类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # prevent-use-item: true时匹配所有物品
-prevent-use-item: [ ]
+prevent-use-item: []
 
 # 阻止发射器发射物品
 # 可用物品类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # prevent-dispense-item: true时匹配所有物品
-prevent-dispense-item: [ ]
+prevent-dispense-item: []
 
 # 阻止玩家左键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
