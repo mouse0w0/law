@@ -172,7 +172,7 @@ public class Law {
             }
             return set::contains;
         } else {
-            return TRUE_PREDICATE;
+            return FALSE_PREDICATE;
         }
     }
 
