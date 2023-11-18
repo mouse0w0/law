@@ -252,8 +252,8 @@ prevent-ignite-block: []
 # 下载插件
 
 - [百度网盘下载](https://pan.baidu.com/s/1V3YTptQWiRpBMlSglfwy-A?pwd=ffjc)
-- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F2.3.0%2FLaw-2.3.0.jar)
-- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/2.3.0/Law-2.3.0.jar)
+- [Github 加速下载](https://ghproxy.com/?q=https%3A%2F%2Fgithub.com%2Fmouse0w0%2Flaw%2Freleases%2Fdownload%2F2.3.1%2FLaw-2.3.1.jar)
+- [Github 官方下载](https://github.com/mouse0w0/law/releases/download/2.3.1/Law-2.3.1.jar)
 
 # 开源信息
 本插件所有源代码托管于Github，使用**BSD-3-Clause license**开源协议。
