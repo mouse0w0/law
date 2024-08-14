@@ -115,9 +115,9 @@ public class Main extends JavaPlugin {
         }
     }
 
-    private static <T extends Enum<T>> boolean hasEnum(Class<T> type, String name) {
+    private static <E extends Enum<E>> boolean hasEnum(Class<E> enumType, String enumName) {
         try {
-            Enum.valueOf(type, name);
+            Enum.valueOf(enumType, enumName);
             return true;
         } catch (IllegalArgumentException e) {
             return false;
