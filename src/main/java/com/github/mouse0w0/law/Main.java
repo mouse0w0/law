@@ -62,7 +62,7 @@ public class Main extends JavaPlugin {
         }
 
         new UpdateChecker(this,
-                "https://www.mcbbs.net/thread-1397550-1-1.html",
+                "https://www.minebbs.com/resources/law.9067/",
                 "https://github.com/mouse0w0/law",
                 "https://api.github.com/repos/mouse0w0/law/releases/latest",
                 () -> Config.updateCheck,
