@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 public class Law {
     public Predicate<EntityType> preventEntitySpawn;
@@ -147,30 +148,43 @@ public class Law {
     private static final Predicate TRUE_PREDICATE = t -> true;
 
     @SuppressWarnings("unchecked")
-    private static <T extends Enum<T>>
-    Predicate<T> getPredicate(ConfigurationSection config, String path, Class<T> enumClass, Map<String, Collection<T>> groups) {
+    private static <E extends Enum<E>>
+    Predicate<E> getPredicate(ConfigurationSection config, String path, Class<E> enumType, Map<String, Collection<E>> groups) {
         Object value = config.get(path);
         if (Boolean.TRUE.equals(value)) {
             return TRUE_PREDICATE;
         } else if (value instanceof List) {
-            List<String> enumList = (List<String>) value;
-            Set<T> set = new HashSet<>();
-            for (String enumName : enumList) {
+            List<String> rules = (List<String>) value;
+            Set<E> enums = new HashSet<>();
+            for (String rule : rules) {
                 try {
-                    set.add(Enum.valueOf(enumClass, enumName));
+                    enums.add(Enum.valueOf(enumType, rule));
+                    continue;
                 } catch (IllegalArgumentException ignored) {
-                    if (groups != null) {
-                        Collection<T> collection = groups.get(enumName);
-                        if (collection != null) {
-                            set.addAll(collection);
-                        }
+                }
+
+                if (groups != null) {
+                    Collection<E> collection = groups.get(rule);
+                    if (collection != null) {
+                        enums.addAll(collection);
+                        continue;
                     }
                 }
+
+                Pattern pattern = Pattern.compile(rule);
+                boolean noMatching = true;
+                for (E enumConstant : enumType.getEnumConstants()) {
+                    if (pattern.matcher(enumConstant.name()).matches()) {
+                        enums.add(enumConstant);
+                        noMatching = false;
+                    }
+                }
+
+                if (noMatching) {
+                    Main.getPlugin().getLogger().warning("Rule `" + rule + "` of `" + path + "` failed to match any entry in `" + enumType.getSimpleName() + "`.");
+                }
             }
-            if (set.isEmpty()) {
-                return FALSE_PREDICATE;
-            }
-            return set::contains;
+            return enums.isEmpty() ? FALSE_PREDICATE : enums::contains;
         } else {
             return FALSE_PREDICATE;
         }
@@ -183,7 +197,7 @@ public class Law {
 
     @SuppressWarnings("unchecked")
     private static <T extends Enum<T>, U extends Enum<U>>
-    BiPredicate<T, U> getBiPredicate(ConfigurationSection config, String path, Class<T> enumClass0, Class<U> enumClass1, Map<String, Collection<U>> groups) {
+    BiPredicate<T, U> getBiPredicate(ConfigurationSection config, String path, Class<T> enumType0, Class<U> enumType1, Map<String, Collection<U>> groups) {
         Object value = config.get(path);
         if (Boolean.TRUE.equals(value)) {
             return TRUE_BI_PREDICATE;
@@ -192,7 +206,7 @@ public class Law {
             Map<T, Predicate<U>> map = new HashMap<>();
             for (String key : section.getKeys(false)) {
                 try {
-                    map.put(Enum.valueOf(enumClass0, key), getPredicate(section, key, enumClass1, groups));
+                    map.put(Enum.valueOf(enumType0, key), getPredicate(section, key, enumType1, groups));
                 } catch (IllegalArgumentException ignored) {
                 }
             }
