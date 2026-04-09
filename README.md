@@ -32,47 +32,47 @@
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # 支持正则表达式匹配
-# prevent-entity-spawn: true时匹配所有实体
+# prevent-entity-spawn: true # 匹配所有实体
 prevent-entity-spawn: []
 
 # 阻止实体通过传送门
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # 支持正则表达式匹配
-# prevent-entity-teleport-by-portal: true时匹配所有实体
+# prevent-entity-teleport-by-portal: true # 匹配所有实体
 prevent-entity-teleport-by-portal: []
 
 # 阻止实体爆炸
-# 苦力怕（CREEPER）、TNT（PRIMED_TNT）、末影水晶（ENDER_CRYSTAL）
-# 凋零头颅（WITHER_SKULL）、恶魂火球（FIREBALL）、TNT矿车（MINECART_TNT）
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# CREEPER（苦力怕）、PRIMED_TNT（TNT）、ENDER_CRYSTAL（末影水晶）
+# WITHER_SKULL（凋零头颅）、FIREBALL（恶魂火球）、MINECART_TNT（TNT矿车）
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # 支持正则表达式匹配
-# prevent-entity-explosion: true时匹配所有实体
+# prevent-entity-explosion: true # 匹配所有实体
 prevent-entity-explosion: []
 
 # 阻止实体破坏方块、画以及展示框
-# 苦力怕（CREEPER）、TNT（PRIMED_TNT）、末影水晶（ENDER_CRYSTAL）、凋零头颅（WITHER_SKULL）
-# 恶魂火球（FIREBALL）、烈焰人火球（SMALL_FIREBALL）、TNT矿车（MINECART_TNT）、末影人（ENDERMAN）
-# 僵尸（ZOMBIE）、凋零（WITHER）、羊（SHEEP）、劫掠兽（RAVAGER）
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+# CREEPER（苦力怕）、PRIMED_TNT（TNT）、ENDER_CRYSTAL（末影水晶）
+# WITHER_SKULL（凋零头颅）、FIREBALL（恶魂火球）、MINECART_TNT（TNT矿车）
+# ENDERMAN（末影人）、ZOMBIE（僵尸）、WITHER（凋零）、SHEEP（羊）、RAVAGER（劫掠兽）
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # 支持正则表达式匹配
-# prevent-entity-break-block: true时匹配所有实体
+# prevent-entity-break-block: true # 匹配所有实体
 prevent-entity-break-block: [CREEPER, PRIMED_TNT, ENDER_CRYSTAL, WITHER, WITHER_SKULL, FIREBALL, SMALL_FIREBALL, MINECART_TNT, ENDERMAN]
 
 # 阻止实体乘坐载具
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # 支持正则表达式匹配
-# prevent-entity-enter-vehicle: true时匹配所有实体
+# prevent-entity-enter-vehicle: true # 匹配所有实体
 prevent-entity-enter-vehicle: []
 
 # 阻止实体捡起物品
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # 支持正则表达式匹配
-# prevent-entity-pickup-item: true时匹配所有实体
+# prevent-entity-pickup-item: true # 匹配所有实体
 prevent-entity-pickup-item: []
 
 # 阻止实体受到伤害
@@ -80,7 +80,7 @@ prevent-entity-pickup-item: []
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用伤害类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html
 # 支持正则表达式匹配
-# prevent-entity-damage: true时阻止所有实体受到伤害
+# prevent-entity-damage: true # 阻止所有实体受到伤害
 prevent-entity-damage:
   # 阻止盔甲架受到爆炸伤害
   ARMOR_STAND: [ENTITY_EXPLOSION, BLOCK_EXPLOSION]
@@ -94,7 +94,7 @@ prevent-entity-damage:
 # 阻止实体受到实体伤害
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 支持正则表达式匹配
-# prevent-entity-damage-by-entity: true时阻止所有实体受到实体伤害
+# prevent-entity-damage-by-entity: true # 阻止所有实体受到实体伤害
 prevent-entity-damage-by-entity:
   # 示例
   _UNKNOWN: []
@@ -121,9 +121,6 @@ prevent-pig-to-zombie-pigman: false
 
 # 阻止蘑菇牛切换颜色
 prevent-mooshroom-switch: false
-
-# 阻止火焰蔓延
-prevent-fire-spread: false
 
 # 阻止火焰摧毁方块
 prevent-fire-burn: false
@@ -191,25 +188,25 @@ disable-weather-lightning: false
 # 阻止玩家放置方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # 支持正则表达式匹配
-# prevent-place-block: true时匹配所有方块
+# prevent-place-block: true # 匹配所有方块
 prevent-place-block: []
 
 # 阻止玩家破坏方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # 支持正则表达式匹配
-# prevent-break-block: true时匹配所有方块
+# prevent-break-block: true # 匹配所有方块
 prevent-break-block: []
 
 # 阻止玩家左键交互方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # 支持正则表达式匹配
-# prevent-left-click-block: true时匹配所有方块
+# prevent-left-click-block: true # 匹配所有方块
 prevent-left-click-block: []
 
 # 阻止玩家右键交互方块
 # 可用方块类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # 支持正则表达式匹配
-# prevent-right-click-block: true时匹配所有方块
+# prevent-right-click-block: true # 匹配所有方块
 prevent-right-click-block: []
 # 阻止玩家右键花盆和盆栽
 # prevent-right-click-block: [FLOWER_POT, POTTED_.+]
@@ -217,33 +214,36 @@ prevent-right-click-block: []
 # 阻止玩家使用物品
 # 可用物品类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # 支持正则表达式匹配
-# prevent-use-item: true时匹配所有物品
+# prevent-use-item: true # 匹配所有物品
 prevent-use-item: []
 
 # 阻止发射器发射物品
 # 可用物品类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
 # 支持正则表达式匹配
-# prevent-dispense-item: true时匹配所有物品
+# prevent-dispense-item: true # 匹配所有物品
 prevent-dispense-item: []
 
 # 阻止玩家左键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # 支持正则表达式匹配
-# prevent-left-click-entity: true时匹配所有实体
+# prevent-left-click-entity: true # 匹配所有实体
 prevent-left-click-entity: []
 
 # 阻止玩家右键交互实体
 # 可用实体类型：https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
 # 可用实体类型组：LIVING（匹配所有生物）、FRIENDLY（匹配所有友好生物）、HOSTILE（匹配所有敌对生物）
 # 支持正则表达式匹配
-# prevent-right-click-entity: true时匹配所有实体
+# prevent-right-click-entity: true # 匹配所有实体
 prevent-right-click-entity: []
 
 # 阻止点燃方块
 # 可用点燃类型：https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/block/BlockIgniteEvent.IgniteCause.html
+# ARROW（箭）、ENDER_CRYSTAL（末影水晶）、EXPLOSION（爆炸）、FIREBALL（火球）
+# FLINT_AND_STEEL（打火石）、LAVA（岩浆）、LIGHTNING（闪电）、SPREAD（火焰蔓延）
 # 支持正则表达式匹配
-# prevent-ignite-block: true时匹配所有点燃原因
+# prevent-ignite-block: true # 匹配所有点燃类型
+# prevent-ignite-block: [SPREAD] # 阻止火焰蔓延
 prevent-ignite-block: []
 ```
 
