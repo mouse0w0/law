@@ -31,7 +31,6 @@ public class Law {
     public boolean preventCreeperCharge;
     public boolean preventPigToZombiePigman;
     public boolean preventMooshroomSwitch;
-    public boolean preventFireSpread;
     public boolean preventFireBurn;
     public boolean preventFireFade;
     public boolean preventSnowForm;
@@ -108,7 +107,6 @@ public class Law {
         law.preventCreeperCharge = config.getBoolean("prevent-creeper-charge");
         law.preventPigToZombiePigman = config.getBoolean("prevent-pig-to-zombie-pigman");
         law.preventMooshroomSwitch = config.getBoolean("prevent-mooshroom-switch");
-        law.preventFireSpread = config.getBoolean("prevent-fire-spread");
         law.preventFireBurn = config.getBoolean("prevent-fire-burn");
         law.preventFireFade = config.getBoolean("prevent-fire-fade");
         law.preventSnowForm = config.getBoolean("prevent-snow-form");

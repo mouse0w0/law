@@ -103,14 +103,6 @@ public class LawListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onBlockSpread(BlockSpreadEvent e) {
-        Block block = e.getSource();
-        if (block.getType() == Material.FIRE && Law.get(block.getWorld()).preventFireSpread) {
-            e.setCancelled(true);
-        }
-    }
-
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBlockBurn(BlockBurnEvent e) {
         if (Law.get(e.getBlock().getWorld()).preventFireBurn) {
             e.setCancelled(true);

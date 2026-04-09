@@ -92,9 +92,6 @@ prevent-pig-to-zombie-pigman: false
 # 阻止蘑菇牛切换颜色
 prevent-mooshroom-switch: false
 
-# 阻止火焰蔓延
-prevent-fire-spread: false
-
 # 阻止火焰摧毁方块
 prevent-fire-burn: false
 
@@ -212,6 +209,9 @@ prevent-right-click-entity: []
 
 # 阻止点燃方块
 # 可用点燃类型：https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/event/block/BlockIgniteEvent.IgniteCause.html
+# ARROW（箭）、ENDER_CRYSTAL（末影水晶）、EXPLOSION（爆炸）、FIREBALL（火球）
+# FLINT_AND_STEEL（打火石）、LAVA（岩浆）、LIGHTNING（闪电）、SPREAD（火焰蔓延）
 # 支持正则表达式匹配
-# prevent-ignite-block: true时匹配所有点燃原因
+# prevent-ignite-block: true # 匹配所有点燃类型
+# prevent-ignite-block: [SPREAD] # 阻止火焰蔓延
 prevent-ignite-block: []
